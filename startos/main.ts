@@ -7,7 +7,7 @@ export const main = sdk.setupMain(async ({ effects, started }) => {
    *
    * In this section, we fetch any resources or run any desired preliminary commands.
    */
-  console.info('Starting Hello World!')
+  console.info('Starting Home Assistant!')
 
   /**
    * ======================== Daemons ========================
@@ -19,16 +19,23 @@ export const main = sdk.setupMain(async ({ effects, started }) => {
   return sdk.Daemons.of(effects, started).addDaemon('primary', {
     subcontainer: await sdk.SubContainer.of(
       effects,
-      { imageId: 'hello-world' },
-      sdk.Mounts.of().mountVolume({
-        volumeId: 'main',
-        subpath: null,
-        mountpoint: '/data',
-        readonly: false,
-      }),
-      'hello-world-sub',
+      { imageId: 'home-assistant' },
+      sdk.Mounts.of()
+        .mountVolume({
+          volumeId: 'main',
+          subpath: null,
+          mountpoint: '/data',
+          readonly: false,
+        })
+        .mountVolume({
+          volumeId: 'config',
+          subpath: null,
+          mountpoint: '/config',
+          readonly: false,
+        }),
+      'home-assistant-sub',
     ),
-    exec: { command: ['hello-world'] },
+    exec: { command: sdk.useEntrypoint(), runAsInit: true },
     ready: {
       display: 'Web Interface',
       fn: () =>

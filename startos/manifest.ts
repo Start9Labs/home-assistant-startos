@@ -7,24 +7,24 @@ const architectures =
   BUILD === 'x86_64' || BUILD === 'aarch64' ? [BUILD] : ['x86_64', 'aarch64']
 
 export const manifest = setupManifest({
-  id: 'hello-world',
-  title: 'Hello World',
+  id: 'home-assistant',
+  title: 'Home Assistant',
   license: 'MIT',
-  wrapperRepo: 'https://github.com/Start9Labs/hello-world-wrapper',
-  upstreamRepo: 'https://github.com/Start9Labs/hello-world',
-  supportSite: 'https://docs.start9.com/',
-  marketingSite: 'https://start9.com/',
-  donationUrl: 'https://donate.start9.com/',
-  docsUrl:
-    'https://github.com/Start9Labs/hello-world-startos/blob/master/instructions.md',
+  wrapperRepo: 'https://github.com/Start9Labs/home-assistant-startos/',
+  upstreamRepo: 'https://github.com/home-assistant/core/',
+  supportSite: 'https://community.home-assistant.io/',
+  marketingSite: 'https://homeassistant.io/',
+  donationUrl: null,
+  docsUrl: 'https://www.home-assistant.io/docs/',
   description: {
-    short: 'Bare bones example of a StartOS service',
-    long: 'Hello World is a template service that provides examples of basic StartOS features.',
+    short:
+      'Open source home automation that puts local control and privacy first',
+    long: 'Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts',
   },
-  volumes: ['main'],
+  volumes: ['main', 'config'],
   images: {
-    'hello-world': {
-      source: { dockerTag: 'start9/hello-world' },
+    'home-assistant': {
+      source: { dockerTag: 'ghcr.io/home-assistant/home-assistant:2025.11.1' },
       arch: architectures,
     } as SDKImageInputSpec,
   },
