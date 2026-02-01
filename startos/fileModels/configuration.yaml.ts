@@ -1,4 +1,5 @@
 import { matches, FileHelper } from '@start9labs/start-sdk'
+import { sdk } from '../sdk'
 
 const { object } = matches
 
@@ -8,7 +9,7 @@ const shape = object({
 
 export const configurationYaml = FileHelper.yaml(
   {
-    volumeId: 'config',
+    base: sdk.volumes.config,
     subpath: 'configuration.yaml',
   },
   shape,
