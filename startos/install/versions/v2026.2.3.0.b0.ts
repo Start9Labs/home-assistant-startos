@@ -1,7 +1,7 @@
 import { VersionInfo } from '@start9labs/start-sdk'
 
-export const v_2026_1_3_0_b0 = VersionInfo.of({
-  version: '2026.1.3:0-beta.0',
+export const v_2026_2_3_0_b0 = VersionInfo.of({
+  version: '2026.2.3:0-beta.0',
   releaseNotes: {
     en_US: 'Initial release for StartOS 0.4.0',
     es_ES: 'Lanzamiento inicial para StartOS 0.4.0',

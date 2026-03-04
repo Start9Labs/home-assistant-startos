@@ -1,11 +1,11 @@
-import { matches, FileHelper } from '@start9labs/start-sdk'
+import { FileHelper, z } from '@start9labs/start-sdk'
 import { sdk } from '../sdk'
 
-const { object } = matches
-
-const shape = object({
-  default_config: object({}),
-})
+const shape = z
+  .object({
+    default_config: z.object({}).catch({}),
+  })
+  .strip()
 
 export const configurationYaml = FileHelper.yaml(
   {

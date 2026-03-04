@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="icon.png" alt="Home Assistant Logo" width="21%">
+  <img src="icon.svg" alt="Home Assistant Logo" width="21%">
 </p>
 
 # Home Assistant on StartOS
@@ -7,7 +7,7 @@
 > **Upstream docs:** <https://www.home-assistant.io/docs/>
 >
 > Everything not listed in this document should behave the same as upstream
-> Home Assistant Container 2026.1.3. If a feature, setting, or behavior is not mentioned
+> Home Assistant Container. If a feature, setting, or behavior is not mentioned
 > here, the upstream documentation is accurate and fully applicable.
 
 [Home Assistant](https://github.com/home-assistant/core) is an open-source home automation platform that puts local control and privacy first. It supports thousands of devices and services for smart home automation.
@@ -38,7 +38,7 @@
 
 | Property | Value |
 |----------|-------|
-| Image | `ghcr.io/home-assistant/home-assistant:2026.1.3` (upstream unmodified) |
+| Image | `ghcr.io/home-assistant/home-assistant` (upstream unmodified) |
 | Architectures | x86_64, aarch64 |
 | Installation Type | Container (not Home Assistant OS) |
 
@@ -186,8 +186,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for build instructions and development wo
 
 ```yaml
 package_id: home-assistant
-upstream_version: 2026.1.3
-image: ghcr.io/home-assistant/home-assistant:2026.1.3
+image: ghcr.io/home-assistant/home-assistant
 installation_type: container
 architectures: [x86_64, aarch64]
 volumes:
