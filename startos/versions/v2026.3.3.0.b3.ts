@@ -1,7 +1,7 @@
 import { VersionInfo } from '@start9labs/start-sdk'
 
-export const v_2026_3_3_0_b2 = VersionInfo.of({
-  version: '2026.3.3:0-beta.2',
+export const v_2026_3_3_0_b3 = VersionInfo.of({
+  version: '2026.3.3:0-beta.3',
   releaseNotes: {
     en_US: 'Update Home Assistant to 2026.3.3',
     es_ES: 'Actualización de Home Assistant a 2026.3.3',
