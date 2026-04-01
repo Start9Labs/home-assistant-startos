@@ -5,7 +5,7 @@ export const manifest = setupManifest({
   id: 'home-assistant',
   title: 'Home Assistant',
   license: 'MIT',
-  packageRepo: 'https://github.com/Start9Labs/home-assistant-startos/tree/update/040',
+  packageRepo: 'https://github.com/Start9Labs/home-assistant-startos',
   upstreamRepo: 'https://github.com/home-assistant/core/',
   marketingUrl: 'https://homeassistant.io/',
   donationUrl: null,
@@ -14,7 +14,7 @@ export const manifest = setupManifest({
   volumes: ['main', 'config'],
   images: {
     'home-assistant': {
-      source: { dockerTag: 'ghcr.io/home-assistant/home-assistant:2026.3.3' },
+      source: { dockerTag: 'ghcr.io/home-assistant/home-assistant:2026.3.4' },
       arch: ['x86_64', 'aarch64'],
     },
   },
