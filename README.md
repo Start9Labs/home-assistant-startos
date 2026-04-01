@@ -187,7 +187,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for build instructions and development wo
 ```yaml
 package_id: home-assistant
 image: ghcr.io/home-assistant/home-assistant
-installation_type: container
 architectures: [x86_64, aarch64]
 volumes:
   main: /data
@@ -195,19 +194,6 @@ volumes:
 ports:
   ui: 8123
 dependencies: none
+startos_managed_env_vars: none
 actions: none
-health_checks:
-  - port_listening: 8123 (60s grace period)
-backup_volumes:
-  - main
-  - config
-not_available:
-  - Add-ons/Apps store
-  - Supervisor
-  - Built-in backup UI
-  - Thread border router (via add-on)
-  - Z-Wave JS add-on (manual setup required)
-container_limitations:
-  - All standard Home Assistant Container limitations apply
-  - See https://www.home-assistant.io/installation/ for details
 ```
