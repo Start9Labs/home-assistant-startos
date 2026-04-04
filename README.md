@@ -53,7 +53,7 @@
 
 **StartOS-specific files:**
 
-- `configuration.yaml` — managed with `default_config` enabled
+- `configuration.yaml` — managed with `default_config` enabled and reverse proxy settings for the StartOS proxy (`use_x_forwarded_for`, `trusted_proxies`)
 
 ---
 
