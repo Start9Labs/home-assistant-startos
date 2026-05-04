@@ -53,7 +53,7 @@
 
 **StartOS-specific files:**
 
-- `configuration.yaml` — managed with `default_config` enabled and reverse proxy settings for the StartOS proxy (`use_x_forwarded_for`, `trusted_proxies`)
+- `configuration.yaml` — Home Assistant writes the standard upstream default on first install (`default_config`, `frontend.themes`, `!include` directives for `automations.yaml`/`scripts.yaml`/`scenes.yaml`). StartOS layers an **enforced** `http` block on top for the StartOS reverse proxy (`use_x_forwarded_for: true`, `trusted_proxies: 10.0.3.0/24`) — manual edits to those two keys are reverted on the next package init. All other settings are user-editable via SSH.
 
 ---
 
@@ -76,13 +76,13 @@
 
 ## Configuration Management
 
-Home Assistant configuration is managed entirely through upstream methods:
+Home Assistant configuration is managed through upstream methods:
 
 - **Web UI** — Settings, integrations, automations, dashboards
 - **configuration.yaml** — Advanced configuration (in `/config` volume)
 - **YAML files** — Automations, scripts, scenes can be file-based
 
-StartOS does not expose any Home Assistant settings through actions. All configuration is done within Home Assistant itself.
+StartOS does not expose any Home Assistant settings through actions. The only StartOS-managed piece of `configuration.yaml` is the `http` block (reverse proxy trust) — see [Volume and Data Layout](#volume-and-data-layout). Everything else is user-managed.
 
 ---
 
@@ -103,7 +103,13 @@ StartOS does not expose any Home Assistant settings through actions. All configu
 
 ## Actions (StartOS UI)
 
-None. All configuration is done within Home Assistant's web interface.
+| Action | When to Use | Notes |
+|--------|-------------|-------|
+| Reset Password | You've lost the password to a Home Assistant account | Service must be **stopped** before running. Pick the username from the dropdown; a freshly generated password is returned. |
+
+All other configuration is done within Home Assistant's web interface.
+
+**Why "stopped" only:** Home Assistant caches the auth provider state in memory and rewrites `.storage/auth_provider.homeassistant` on graceful shutdown. Resetting the password while the service is running would be silently overwritten when the service stops.
 
 ---
 
@@ -195,5 +201,6 @@ ports:
   ui: 8123
 dependencies: none
 startos_managed_env_vars: none
-actions: none
+actions:
+  - reset-password  # multi-user; only-stopped
 ```

@@ -1,6 +1,6 @@
 import { i18n } from './i18n'
 import { sdk } from './sdk'
-import { uiPort } from './utils'
+import { haSubcontainer, uiPort } from './utils'
 
 export const main = sdk.setupMain(async ({ effects }) => {
   /**
@@ -18,24 +18,7 @@ export const main = sdk.setupMain(async ({ effects }) => {
    * Each daemon defines its own health check, which can optionally be exposed to the user.
    */
   return sdk.Daemons.of(effects).addDaemon('primary', {
-    subcontainer: await sdk.SubContainer.of(
-      effects,
-      { imageId: 'home-assistant' },
-      sdk.Mounts.of()
-        .mountVolume({
-          volumeId: 'main',
-          subpath: null,
-          mountpoint: '/data',
-          readonly: false,
-        })
-        .mountVolume({
-          volumeId: 'config',
-          subpath: null,
-          mountpoint: '/config',
-          readonly: false,
-        }),
-      'home-assistant-sub',
-    ),
+    subcontainer: await haSubcontainer(effects, 'home-assistant-sub'),
     exec: { command: sdk.useEntrypoint(), runAsInit: true },
     ready: {
       display: i18n('Web Interface'),
