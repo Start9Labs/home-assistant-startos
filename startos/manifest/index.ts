@@ -9,7 +9,6 @@ export const manifest = setupManifest({
   upstreamRepo: 'https://github.com/home-assistant/core/',
   marketingUrl: 'https://homeassistant.io/',
   donationUrl: null,
-  docsUrls: ['https://www.home-assistant.io/docs/'],
   description: i18n.description,
   volumes: ['main', 'config'],
   images: {
