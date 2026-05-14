@@ -9,12 +9,11 @@ export const manifest = setupManifest({
   upstreamRepo: 'https://github.com/home-assistant/core/',
   marketingUrl: 'https://homeassistant.io/',
   donationUrl: null,
-  docsUrls: ['https://www.home-assistant.io/docs/'],
   description: i18n.description,
   volumes: ['main', 'config'],
   images: {
     'home-assistant': {
-      source: { dockerTag: 'ghcr.io/home-assistant/home-assistant:2026.4.2' },
+      source: { dockerTag: 'ghcr.io/home-assistant/home-assistant:2026.5.1' },
       arch: ['x86_64', 'aarch64'],
     },
   },
