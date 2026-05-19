@@ -4,29 +4,19 @@ import { configurationYaml } from '../fileModels/configuration.yaml'
 import { regenerateDefaults } from '../init/bootstrapHa'
 import { sdk } from '../sdk'
 
-export const v_2026_5_1_1 = VersionInfo.of({
-  version: '2026.5.1:1',
+export const v_2026_5_2_1 = VersionInfo.of({
+  version: '2026.5.2:1',
   releaseNotes: {
-    en_US: `**Bumps**
-
-- Home Assistant → 2026.5.1
-- start-sdk → 1.5.0`,
-    es_ES: `**Actualizaciones**
-
-- Home Assistant → 2026.5.1
-- start-sdk → 1.5.0`,
-    de_DE: `**Aktualisierungen**
-
-- Home Assistant → 2026.5.1
-- start-sdk → 1.5.0`,
-    pl_PL: `**Aktualizacje**
-
-- Home Assistant → 2026.5.1
-- start-sdk → 1.5.0`,
-    fr_FR: `**Mises à jour**
-
-- Home Assistant → 2026.5.1
-- start-sdk → 1.5.0`,
+    en_US: `- Home Assistant → 2026.5.2
+- start-sdk → 1.5.2`,
+    es_ES: `- Home Assistant → 2026.5.2
+- start-sdk → 1.5.2`,
+    de_DE: `- Home Assistant → 2026.5.2
+- start-sdk → 1.5.2`,
+    pl_PL: `- Home Assistant → 2026.5.2
+- start-sdk → 1.5.2`,
+    fr_FR: `- Home Assistant → 2026.5.2
+- start-sdk → 1.5.2`,
   },
   migrations: {
     up: async ({ effects }) => {
