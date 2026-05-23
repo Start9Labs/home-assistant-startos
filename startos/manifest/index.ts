@@ -13,7 +13,7 @@ export const manifest = setupManifest({
   volumes: ['main', 'config'],
   images: {
     'home-assistant': {
-      source: { dockerTag: 'ghcr.io/home-assistant/home-assistant:2026.5.3' },
+      source: { dockerTag: 'ghcr.io/home-assistant/home-assistant:2026.5.4' },
       arch: ['x86_64', 'aarch64'],
     },
   },
