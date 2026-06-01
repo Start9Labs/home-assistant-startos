@@ -24,6 +24,7 @@
 - [Configuration Management](#configuration-management)
 - [Network Access and Interfaces](#network-access-and-interfaces)
 - [Actions (StartOS UI)](#actions-startos-ui)
+- [Community store (HACS)](#community-store-hacs)
 - [Dependencies](#dependencies)
 - [Backups and Restore](#backups-and-restore)
 - [Health Checks](#health-checks)
@@ -106,10 +107,24 @@ StartOS does not expose any Home Assistant settings through actions. The only St
 | Action | When to Use | Notes |
 |--------|-------------|-------|
 | Reset Password | You've lost the password to a Home Assistant account | Service must be **stopped** before running. Pick the username from the dropdown; a freshly generated password is returned. |
+| Set Up HACS | Bootstrap the HACS community store | Extracts bundled `assets/hacs.zip` into `config/custom_components/hacs/`; restarts HA if running. Doesn't activate HACS (manual GitHub OAuth in the HA UI). Hidden once installed. See [Community store (HACS)](#community-store-hacs). |
+| Remove HACS | Remove HACS | Deletes the HACS files; restarts HA if running. Shown only when HACS is installed. See [Community store (HACS)](#community-store-hacs). |
 
 All other configuration is done within Home Assistant's web interface.
 
 **Why "stopped" only:** Home Assistant caches the auth provider state in memory and rewrites `.storage/auth_provider.homeassistant` on graceful shutdown. Resetting the password while the service is running would be silently overwritten when the service stops.
+
+---
+
+## Community store (HACS)
+
+The **Set Up HACS** (`set-up-hacs`) and **Remove HACS** (`remove-hacs`) actions bootstrap [HACS](https://hacs.xyz). Both are `allowedStatuses: 'any'` and restart Home Assistant only if it is running.
+
+- **Set Up** extracts the bundled `assets/hacs.zip` into `config/custom_components/hacs/` (no network — the release is vendored). **Remove** deletes `config/custom_components/hacs/` and `config/.storage/hacs/`; components HACS pulled in (`custom_components/`, `www/community/`) are left alone.
+- Mutually exclusive via a `hacsInstalled` flag in `store.json`, read reactively in each action's metadata — so Set Up can't re-run and downgrade a self-updated HACS.
+- The actions only move files. Activation is manual: the user adds the integration in the HA UI and completes a GitHub device-code OAuth flow (GitHub account required). HACS self-updates afterward, and cannot manage add-ons (Container has no Supervisor).
+
+See the in-app **Instructions** for the user-facing walkthrough.
 
 ---
 
@@ -153,7 +168,7 @@ None. Home Assistant is a standalone application.
 
 These limitations apply to all Home Assistant Container installations, not just StartOS:
 
-1. **No Add-ons/Apps** — The Home Assistant Add-on store is not available (requires Home Assistant OS/Supervised)
+1. **No Add-ons/Apps** — The Home Assistant Add-on store is not available (requires Home Assistant OS/Supervised). This is distinct from HACS, which _is_ available (community integrations, cards, and themes) via the **Set Up HACS** action — see [Community store (HACS)](#community-store-hacs).
 2. **No Supervisor** — Cannot manage the system through Home Assistant
 3. **Limited Thread support** — Thread border router requires add-ons
 4. **Limited Z-Wave support** — Z-Wave JS requires manual setup (no add-on)
@@ -203,4 +218,6 @@ dependencies: none
 startos_managed_env_vars: none
 actions:
   - reset-password  # multi-user; only-stopped
+  - set-up-hacs     # add bundled HACS files; restart if running; any status; hidden once installed; does NOT activate HACS (manual GitHub device auth)
+  - remove-hacs     # delete HACS files; restart if running; any status; shown only when installed
 ```

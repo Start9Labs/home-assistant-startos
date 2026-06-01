@@ -5,6 +5,7 @@ import { versionGraph } from '../versions'
 import { actions } from '../actions'
 import { restoreInit } from '../backups'
 import { bootstrapHa } from './bootstrapHa'
+import { seedFiles } from './seedFiles'
 
 export const init = sdk.setupInit(
   restoreInit,
@@ -12,6 +13,7 @@ export const init = sdk.setupInit(
   bootstrapHa,
   setInterfaces,
   setDependencies,
+  seedFiles,
   actions,
 )
 
