@@ -1,18 +1,13 @@
 import { IMPOSSIBLE, VersionInfo } from '@start9labs/start-sdk'
 
 export const current = VersionInfo.of({
-  version: '2026.5.4:1',
+  version: '2026.6.0:0',
   releaseNotes: {
-    en_US:
-      'Add Set Up HACS and Remove HACS actions for the Home Assistant Community Store.',
-    es_ES:
-      'Añade las acciones Configurar HACS y Eliminar HACS para Home Assistant Community Store.',
-    de_DE:
-      'Fügt die Aktionen „HACS einrichten“ und „HACS entfernen“ für den Home Assistant Community Store hinzu.',
-    pl_PL:
-      'Dodaje akcje „Skonfiguruj HACS“ i „Usuń HACS“ dla Home Assistant Community Store.',
-    fr_FR:
-      'Ajoute les actions « Configurer HACS » et « Supprimer HACS » pour le Home Assistant Community Store.',
+    en_US: 'Updates Home Assistant to 2026.6.0.',
+    es_ES: 'Actualiza Home Assistant a 2026.6.0.',
+    de_DE: 'Aktualisiert Home Assistant auf 2026.6.0.',
+    pl_PL: 'Aktualizuje Home Assistant do 2026.6.0.',
+    fr_FR: 'Met à jour Home Assistant vers 2026.6.0.',
   },
   migrations: {
     up: async ({ effects }) => {},
