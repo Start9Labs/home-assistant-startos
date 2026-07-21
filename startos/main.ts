@@ -18,7 +18,7 @@ export const main = sdk.setupMain(async ({ effects }) => {
    * Each daemon defines its own health check, which can optionally be exposed to the user.
    */
   return sdk.Daemons.of(effects).addDaemon('primary', {
-    subcontainer: await haSubcontainer(effects, 'home-assistant-sub'),
+    subcontainer: haSubcontainer(effects, 'home-assistant-sub'),
     exec: { command: sdk.useEntrypoint(), runAsInit: true },
     ready: {
       display: i18n('Web Interface'),

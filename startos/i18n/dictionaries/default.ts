@@ -23,6 +23,7 @@ const dict = {
   'If you activated HACS, first remove its integration in Home Assistant (Settings > Devices & Services > HACS > Delete). This action then deletes the HACS files; integrations, cards, and themes you installed through HACS remain, and your GitHub authorization is not revoked.': 19,
   'HACS Removed': 20,
   "HACS has been removed. Anything you installed through HACS (integrations, cards, and themes) is still present - see this service's Instructions to remove those or revoke GitHub access.": 21,
+  'Generating Home Assistant configuration': 22,
 } as const
 
 export type I18nKey = keyof typeof dict

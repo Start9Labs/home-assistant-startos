@@ -24,6 +24,7 @@ export default {
     19: 'Si activaste HACS, primero elimina su integración en Home Assistant (Ajustes > Dispositivos y servicios > HACS > Eliminar). Esta acción luego borra los archivos de HACS; las integraciones, tarjetas y temas que instalaste a través de HACS permanecen, y tu autorización de GitHub no se revoca.',
     20: 'HACS eliminado',
     21: 'HACS se ha eliminado. Todo lo que instalaste a través de HACS (integraciones, tarjetas y temas) sigue presente; consulta las Instrucciones de este servicio para eliminarlo o revocar el acceso de GitHub.',
+    22: 'Generando la configuración de Home Assistant',
   },
   de_DE: {
     0: 'Home Assistant wird gestartet!',
@@ -48,6 +49,7 @@ export default {
     19: 'Wenn du HACS aktiviert hast, entferne zuerst seine Integration in Home Assistant (Einstellungen > Geräte & Dienste > HACS > Löschen). Diese Aktion löscht dann die HACS-Dateien; Integrationen, Karten und Themes, die du über HACS installiert hast, bleiben bestehen, und deine GitHub-Autorisierung wird nicht widerrufen.',
     20: 'HACS entfernt',
     21: 'HACS wurde entfernt. Alles, was du über HACS installiert hast (Integrationen, Karten und Themes), ist weiterhin vorhanden - siehe die Anleitung dieses Dienstes, um es zu entfernen oder den GitHub-Zugriff zu widerrufen.',
+    22: 'Home Assistant-Konfiguration wird generiert',
   },
   pl_PL: {
     0: 'Uruchamianie Home Assistant!',
@@ -72,6 +74,7 @@ export default {
     19: 'Jeśli aktywowałeś HACS, najpierw usuń jego integrację w Home Assistant (Ustawienia > Urządzenia i usługi > HACS > Usuń). Następnie ta akcja usuwa pliki HACS; integracje, karty i motywy zainstalowane przez HACS pozostają, a Twoja autoryzacja GitHub nie zostaje cofnięta.',
     20: 'HACS usunięty',
     21: 'HACS został usunięty. Wszystko, co zainstalowano przez HACS (integracje, karty i motywy), nadal istnieje - zobacz Instrukcje tej usługi, aby to usunąć lub cofnąć dostęp GitHub.',
+    22: 'Generowanie konfiguracji Home Assistant',
   },
   fr_FR: {
     0: 'Démarrage de Home Assistant !',
@@ -96,5 +99,6 @@ export default {
     19: "Si vous avez activé HACS, supprimez d'abord son intégration dans Home Assistant (Paramètres > Appareils et services > HACS > Supprimer). Cette action supprime ensuite les fichiers HACS ; les intégrations, cartes et thèmes installés via HACS restent, et votre autorisation GitHub n'est pas révoquée.",
     20: 'HACS supprimé',
     21: "HACS a été supprimé. Tout ce que vous avez installé via HACS (intégrations, cartes et thèmes) est toujours présent ; voir les Instructions de ce service pour le supprimer ou révoquer l'accès GitHub.",
+    22: 'Génération de la configuration de Home Assistant',
   },
 } satisfies Record<string, LangDict>
