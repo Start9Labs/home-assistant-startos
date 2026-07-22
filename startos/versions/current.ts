@@ -1,58 +1,53 @@
 import { IMPOSSIBLE, VersionInfo } from '@start9labs/start-sdk'
 
 export const current = VersionInfo.of({
-  version: '2026.7.2:0',
+  version: '2026.7.3:0',
   releaseNotes: {
-    en_US: `Updated Home Assistant to 2026.7.2, a bug-fix release rolling up 2026.7.1 and 2026.7.2. No new features and no breaking changes.
+    en_US: `Updated Home Assistant to 2026.7.3, a bug-fix release with dependency bumps only — no new features and no breaking changes.
 
-- Fixes ZHA device triggers failing to resolve quirks, and updates the Zigbee quirks library.
-- Fixes unavailable Homee entities, and Homee covers not reacting correctly to commands.
-- Fixes several Overkiz issues: Rexel gateway setup over the Local API, OAuth sessions expiring after a day, Atlantic heaters missing their regulation mode, and RollerShutterUno covers reporting open when closed.
-- Fixes SMTP notifications missing their "To" header, and SMTP setup failing without a clear error.
-- Fixes SolarEdge energy sensors losing their unit of measurement, and the KNX telegram history migration for data from 2026.3 and earlier.
-- Fixes many further integrations, including Teslemetry, UniFi Protect, Roborock, Sonos, ESPHome and Reolink, and updates the frontend.
+- Fixes several Roborock issues (A01 protocol filtering, vacuum segment mapping, dynamic dock support) and updates the Roborock library.
+- Fixes a UniFi setup crash on cellular/5G WAN connections without monitors.
+- Fixes Overkiz Hitachi Yutaki second-zone heating and RTSGeneric cover open/close, and updates the Overkiz library.
+- Fixes duplicate Hikvision binary sensor unique IDs and makes FRITZ!Box repairs non-persistent.
+- Bumps ZHA to 2.0.1 and updates the frontend to 20260624.6.
 
-Full release notes: https://github.com/home-assistant/core/releases/tag/2026.7.2`,
-    es_ES: `Actualiza Home Assistant a 2026.7.2, una versión de corrección de errores que agrupa 2026.7.1 y 2026.7.2. Sin nuevas funciones ni cambios incompatibles.
+Full release notes: https://github.com/home-assistant/core/releases/tag/2026.7.3`,
+    es_ES: `Actualiza Home Assistant a 2026.7.3, una versión de corrección de errores con solo actualizaciones de dependencias: sin nuevas funciones ni cambios incompatibles.
 
-- Corrige los desencadenantes de dispositivos ZHA que no resolvían las particularidades (quirks) y actualiza la biblioteca de quirks de Zigbee.
-- Corrige las entidades de Homee no disponibles y las persianas de Homee que no respondían correctamente a las órdenes.
-- Corrige varios problemas de Overkiz: la configuración de la pasarela Rexel con la API local, las sesiones OAuth que caducaban al cabo de un día, los calefactores Atlantic sin modo de regulación y las persianas RollerShutterUno que aparecían abiertas estando cerradas.
-- Corrige las notificaciones SMTP a las que les faltaba la cabecera «To» y la configuración de SMTP que fallaba sin mostrar un error claro.
-- Corrige los sensores de energía de SolarEdge que perdían su unidad de medida y la migración del historial de telegramas de KNX para datos de 2026.3 y anteriores.
-- Corrige muchas otras integraciones, entre ellas Teslemetry, UniFi Protect, Roborock, Sonos, ESPHome y Reolink, y actualiza la interfaz.
+- Corrige varios problemas de Roborock (filtrado de protocolos A01, mapeo de segmentos de la aspiradora, compatibilidad con la base dinámica) y actualiza la biblioteca de Roborock.
+- Corrige un fallo en la configuración de UniFi en conexiones WAN móviles/5G sin monitores.
+- Corrige la calefacción de la segunda zona del Hitachi Yutaki en Overkiz y la apertura/cierre de las persianas RTSGeneric, y actualiza la biblioteca de Overkiz.
+- Corrige los identificadores únicos duplicados de los sensores binarios de Hikvision y hace que las reparaciones de FRITZ!Box no sean persistentes.
+- Actualiza ZHA a 2.0.1 y la interfaz a 20260624.6.
 
-Notas de la versión completas: https://github.com/home-assistant/core/releases/tag/2026.7.2`,
-    de_DE: `Aktualisiert Home Assistant auf 2026.7.2, ein Fehlerbehebungs-Release, das 2026.7.1 und 2026.7.2 zusammenfasst. Keine neuen Funktionen und keine Breaking Changes.
+Notas de la versión completas: https://github.com/home-assistant/core/releases/tag/2026.7.3`,
+    de_DE: `Aktualisiert Home Assistant auf 2026.7.3, ein Fehlerbehebungs-Release mit ausschließlich Abhängigkeits-Updates – keine neuen Funktionen und keine Breaking Changes.
 
-- Behebt ZHA-Geräte-Trigger, die Quirks nicht auflösen konnten, und aktualisiert die Zigbee-Quirks-Bibliothek.
-- Behebt nicht verfügbare Homee-Entitäten sowie Homee-Rollläden, die nicht korrekt auf Befehle reagierten.
-- Behebt mehrere Overkiz-Probleme: die Einrichtung des Rexel-Gateways über die lokale API, nach einem Tag ablaufende OAuth-Sitzungen, Atlantic-Heizgeräte ohne Regelungsmodus und RollerShutterUno-Rollläden, die im geschlossenen Zustand als offen gemeldet wurden.
-- Behebt fehlende „To“-Kopfzeilen in SMTP-Benachrichtigungen sowie eine SMTP-Einrichtung, die ohne klare Fehlermeldung fehlschlug.
-- Behebt SolarEdge-Energiesensoren, die ihre Maßeinheit verloren, sowie die KNX-Telegrammverlaufs-Migration für Daten aus 2026.3 und früher.
-- Behebt viele weitere Integrationen, darunter Teslemetry, UniFi Protect, Roborock, Sonos, ESPHome und Reolink, und aktualisiert das Frontend.
+- Behebt mehrere Roborock-Probleme (A01-Protokollfilterung, Segmentzuordnung des Saugroboters, Unterstützung der dynamischen Dockingstation) und aktualisiert die Roborock-Bibliothek.
+- Behebt einen Absturz bei der UniFi-Einrichtung an Mobilfunk-/5G-WAN-Verbindungen ohne Monitore.
+- Behebt die Heizung der zweiten Zone des Hitachi Yutaki in Overkiz sowie das Öffnen/Schließen von RTSGeneric-Rollläden und aktualisiert die Overkiz-Bibliothek.
+- Behebt doppelte eindeutige IDs von Hikvision-Binärsensoren und macht FRITZ!Box-Reparaturen nicht mehr dauerhaft.
+- Aktualisiert ZHA auf 2.0.1 und das Frontend auf 20260624.6.
 
-Vollständige Versionshinweise: https://github.com/home-assistant/core/releases/tag/2026.7.2`,
-    pl_PL: `Aktualizuje Home Assistant do 2026.7.2 — wydania z poprawkami błędów, obejmującego 2026.7.1 i 2026.7.2. Bez nowych funkcji i bez zmian powodujących niezgodność.
+Vollständige Versionshinweise: https://github.com/home-assistant/core/releases/tag/2026.7.3`,
+    pl_PL: `Aktualizuje Home Assistant do 2026.7.3 — wydania z poprawkami błędów zawierającego wyłącznie aktualizacje zależności. Bez nowych funkcji i bez zmian powodujących niezgodność.
 
-- Naprawia wyzwalacze urządzeń ZHA, które nie rozpoznawały quirks, oraz aktualizuje bibliotekę quirks dla Zigbee.
-- Naprawia niedostępne encje Homee oraz rolety Homee, które nie reagowały poprawnie na polecenia.
-- Naprawia kilka problemów z Overkiz: konfigurację bramki Rexel przez lokalne API, sesje OAuth wygasające po dobie, grzejniki Atlantic bez trybu regulacji oraz rolety RollerShutterUno zgłaszające otwarcie, gdy były zamknięte.
-- Naprawia powiadomienia SMTP pozbawione nagłówka „To” oraz konfigurację SMTP kończącą się niepowodzeniem bez czytelnego komunikatu o błędzie.
-- Naprawia czujniki energii SolarEdge tracące jednostkę miary oraz migrację historii telegramów KNX dla danych z wersji 2026.3 i wcześniejszych.
-- Naprawia wiele innych integracji, m.in. Teslemetry, UniFi Protect, Roborock, Sonos, ESPHome i Reolink, oraz aktualizuje interfejs.
+- Naprawia kilka problemów z Roborockiem (filtrowanie protokołów A01, mapowanie segmentów odkurzacza, obsługę dynamicznej stacji dokującej) oraz aktualizuje bibliotekę Roborock.
+- Naprawia awarię konfiguracji UniFi na połączeniach WAN komórkowych/5G bez monitorów.
+- Naprawia ogrzewanie drugiej strefy Hitachi Yutaki w Overkiz oraz otwieranie/zamykanie rolet RTSGeneric i aktualizuje bibliotekę Overkiz.
+- Naprawia zduplikowane unikatowe identyfikatory czujników binarnych Hikvision i sprawia, że naprawy FRITZ!Box nie są trwałe.
+- Aktualizuje ZHA do 2.0.1 oraz interfejs do 20260624.6.
 
-Pełne informacje o wydaniu: https://github.com/home-assistant/core/releases/tag/2026.7.2`,
-    fr_FR: `Met à jour Home Assistant vers 2026.7.2, une version corrective regroupant 2026.7.1 et 2026.7.2. Aucune nouvelle fonctionnalité ni changement incompatible.
+Pełne informacje o wydaniu: https://github.com/home-assistant/core/releases/tag/2026.7.3`,
+    fr_FR: `Met à jour Home Assistant vers 2026.7.3, une version corrective comportant uniquement des mises à jour de dépendances — aucune nouvelle fonctionnalité ni changement incompatible.
 
-- Corrige les déclencheurs d'appareils ZHA qui ne résolvaient pas les quirks, et met à jour la bibliothèque de quirks Zigbee.
-- Corrige les entités Homee indisponibles ainsi que les volets Homee qui ne réagissaient pas correctement aux commandes.
-- Corrige plusieurs problèmes Overkiz : la configuration de la passerelle Rexel via l'API locale, les sessions OAuth expirant au bout d'un jour, les chauffages Atlantic sans mode de régulation, et les volets RollerShutterUno signalés ouverts alors qu'ils étaient fermés.
-- Corrige l'en-tête « To » manquant dans les notifications SMTP, et la configuration SMTP qui échouait sans message d'erreur clair.
-- Corrige les capteurs d'énergie SolarEdge qui perdaient leur unité de mesure, ainsi que la migration de l'historique des télégrammes KNX pour les données de 2026.3 et antérieures.
-- Corrige de nombreuses autres intégrations, dont Teslemetry, UniFi Protect, Roborock, Sonos, ESPHome et Reolink, et met à jour l'interface.
+- Corrige plusieurs problèmes Roborock (filtrage des protocoles A01, cartographie des segments de l'aspirateur, prise en charge de la station d'accueil dynamique) et met à jour la bibliothèque Roborock.
+- Corrige un plantage de la configuration UniFi sur les connexions WAN cellulaires/5G sans moniteurs.
+- Corrige le chauffage de la deuxième zone du Hitachi Yutaki dans Overkiz ainsi que l'ouverture/fermeture des volets RTSGeneric, et met à jour la bibliothèque Overkiz.
+- Corrige les identifiants uniques dupliqués des capteurs binaires Hikvision et rend les réparations FRITZ!Box non persistantes.
+- Met à jour ZHA vers 2.0.1 et l'interface vers 20260624.6.
 
-Notes de version complètes : https://github.com/home-assistant/core/releases/tag/2026.7.2`,
+Notes de version complètes : https://github.com/home-assistant/core/releases/tag/2026.7.3`,
   },
   migrations: {
     up: async ({ effects }) => {},
