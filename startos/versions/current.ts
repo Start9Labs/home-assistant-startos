@@ -1,7 +1,7 @@
 import { IMPOSSIBLE, VersionInfo } from '@start9labs/start-sdk'
 
 export const current = VersionInfo.of({
-  version: '2026.7.2:0',
+  version: '2026.7.2:1',
   releaseNotes: {
     en_US: `Updated Home Assistant to 2026.7.2, a bug-fix release rolling up 2026.7.1 and 2026.7.2. No new features and no breaking changes.
 
