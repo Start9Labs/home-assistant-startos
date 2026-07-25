@@ -37,20 +37,20 @@
 
 ## Image and Container Runtime
 
-| Property | Value |
-|----------|-------|
-| Image | `ghcr.io/home-assistant/home-assistant` (upstream unmodified) |
-| Architectures | x86_64, aarch64 |
-| Installation Type | Container (not Home Assistant OS) |
+| Property          | Value                                                         |
+| ----------------- | ------------------------------------------------------------- |
+| Image             | `ghcr.io/home-assistant/home-assistant` (upstream unmodified) |
+| Architectures     | x86_64, aarch64                                               |
+| Installation Type | Container (not Home Assistant OS)                             |
 
 ---
 
 ## Volume and Data Layout
 
-| Volume | Mount Point | Purpose |
-|--------|-------------|---------|
-| `main` | `/data` | Home Assistant data |
-| `config` | `/config` | Configuration files (`configuration.yaml`, etc.) |
+| Volume   | Mount Point | Purpose                                          |
+| -------- | ----------- | ------------------------------------------------ |
+| `main`   | `/data`     | Home Assistant data                              |
+| `config` | `/config`   | Configuration files (`configuration.yaml`, etc.) |
 
 **StartOS-specific files:**
 
@@ -60,11 +60,11 @@
 
 ## Installation and First-Run Flow
 
-| Step | Upstream | StartOS |
-|------|----------|---------|
-| Installation | Docker pull + compose | Install from marketplace |
-| Initial setup | Create owner account at first access | Same as upstream |
-| Configuration | Edit `configuration.yaml` | Same as upstream |
+| Step          | Upstream                             | StartOS                  |
+| ------------- | ------------------------------------ | ------------------------ |
+| Installation  | Docker pull + compose                | Install from marketplace |
+| Initial setup | Create owner account at first access | Same as upstream         |
+| Configuration | Edit `configuration.yaml`            | Same as upstream         |
 
 **First-run steps:**
 
@@ -89,9 +89,9 @@ StartOS does not expose any Home Assistant settings through actions. The only St
 
 ## Network Access and Interfaces
 
-| Interface | Port | Protocol | Purpose |
-|-----------|------|----------|---------|
-| Web UI | 8123 | HTTP | Home Assistant dashboard |
+| Interface | Port | Protocol | Purpose                  |
+| --------- | ---- | -------- | ------------------------ |
+| Web UI    | 8123 | HTTP     | Home Assistant dashboard |
 
 **Access methods (StartOS 0.4.0):**
 
@@ -104,11 +104,11 @@ StartOS does not expose any Home Assistant settings through actions. The only St
 
 ## Actions (StartOS UI)
 
-| Action | When to Use | Notes |
-|--------|-------------|-------|
-| Reset Password | You've lost the password to a Home Assistant account | Service must be **stopped** before running. Pick the username from the dropdown; a freshly generated password is returned. |
-| Set Up HACS | Bootstrap the HACS community store | Extracts bundled `assets/hacs.zip` into `config/custom_components/hacs/`; restarts HA if running. Doesn't activate HACS (manual GitHub OAuth in the HA UI). Hidden once installed. See [Community store (HACS)](#community-store-hacs). |
-| Remove HACS | Remove HACS | Deletes the HACS files; restarts HA if running. Shown only when HACS is installed. See [Community store (HACS)](#community-store-hacs). |
+| Action         | When to Use                                          | Notes                                                                                                                                                                                                                                   |
+| -------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Reset Password | You've lost the password to a Home Assistant account | Service must be **stopped** before running. Pick the username from the dropdown; a freshly generated password is returned.                                                                                                              |
+| Set Up HACS    | Bootstrap the HACS community store                   | Extracts bundled `assets/hacs.zip` into `config/custom_components/hacs/`; restarts HA if running. Doesn't activate HACS (manual GitHub OAuth in the HA UI). Hidden once installed. See [Community store (HACS)](#community-store-hacs). |
+| Remove HACS    | Remove HACS                                          | Deletes the HACS files; restarts HA if running. Shown only when HACS is installed. See [Community store (HACS)](#community-store-hacs).                                                                                                 |
 
 All other configuration is done within Home Assistant's web interface.
 
@@ -153,9 +153,9 @@ None. Home Assistant is a standalone application.
 
 ## Health Checks
 
-| Check | Display Name | Method | Grace Period |
-|-------|--------------|--------|--------------|
-| Web UI | Web Interface | Port 8123 listening | 60 seconds |
+| Check  | Display Name  | Method              | Grace Period |
+| ------ | ------------- | ------------------- | ------------ |
+| Web UI | Web Interface | Port 8123 listening | 60 seconds   |
 
 **Messages:**
 
@@ -199,7 +199,7 @@ These limitations apply to all Home Assistant Container installations, not just 
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for build instructions and development workflow.
+Build and development workflow follow the StartOS packaging guide: <https://docs.start9.com/packaging>. Keep `README.md`, `instructions.md`, and `AGENTS.md` in sync with any change to user-visible behavior or package structure.
 
 ---
 
@@ -217,7 +217,7 @@ ports:
 dependencies: none
 startos_managed_env_vars: none
 actions:
-  - reset-password  # multi-user; only-stopped
-  - set-up-hacs     # add bundled HACS files; restart if running; any status; hidden once installed; does NOT activate HACS (manual GitHub device auth)
-  - remove-hacs     # delete HACS files; restart if running; any status; shown only when installed
+  - reset-password # multi-user; only-stopped
+  - set-up-hacs # add bundled HACS files; restart if running; any status; hidden once installed; does NOT activate HACS (manual GitHub device auth)
+  - remove-hacs # delete HACS files; restart if running; any status; shown only when installed
 ```
