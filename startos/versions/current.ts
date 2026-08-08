@@ -1,58 +1,58 @@
 import { IMPOSSIBLE, VersionInfo } from '@start9labs/start-sdk'
 
 export const current = VersionInfo.of({
-  version: '2026.7.4:0',
+  version: '2026.8.1:0',
   releaseNotes: {
-    en_US: `Updated Home Assistant to 2026.7.4, rolling up the 2026.7.3 and 2026.7.4 bug-fix releases. No new features and no breaking changes.
+    en_US: `Updated Home Assistant to 2026.8.1, the monthly feature release plus its first bug-fix release.
 
-- Fixes a UniFi setup crash on cellular/5G WAN connections without monitors.
-- Fixes ProxmoxVE authentication failing when the realm contains upper-case letters.
-- Fixes duplicate Hikvision binary sensor unique IDs, and stops FRITZ!Box Tools repairs from being persistent.
-- Fixes several Overkiz issues: the Hitachi Yutaki second heating zone using zone 1 states, and open/close for RTSGeneric covers.
-- Improves Roborock support: dynamic dock detection, segment-mapping repair, and A01 protocol filtering.
-- Updates ZHA to 2.0.1, the frontend to 20260624.6, and core dependencies including aiohttp and yarl.
+- Home Assistant now manages its web server settings (port, trusted proxies) in its own interface instead of \`configuration.yaml\`. StartOS moves the reverse proxy settings over for you, so nothing needs doing — leave the port at 8123 for the dashboard to stay reachable.
+- Every integration now keeps its own device entry instead of merging devices set up through two integrations. Merged devices are split automatically, and a repair may appear.
+- You can now rename entity IDs and control how they are ordered.
+- Developer Tools is now just Tools, and "advanced"/"expert" wording is gone from around 43 places.
+- New moon and vibration triggers and conditions, media search in the media browser, and a redesigned Home Assistant Cloud page.
+- Breaking changes: Volvo On Call and Permobil are removed, the deprecated \`battery_level\` attribute is gone from robot vacuums (use the battery sensor), UniFi Protect requires 7.1 or newer and drops AI Port devices and detection scores, and Paperless-ngx requires server 2.19 or newer.
 
-Full release notes: https://github.com/home-assistant/core/releases/tag/2026.7.3 and https://github.com/home-assistant/core/releases/tag/2026.7.4`,
-    es_ES: `Actualiza Home Assistant a 2026.7.4, agrupando las versiones de corrección 2026.7.3 y 2026.7.4. Sin nuevas funciones ni cambios incompatibles.
+Full release notes: https://www.home-assistant.io/blog/2026/08/05/release-20268/ and https://github.com/home-assistant/core/releases/tag/2026.8.1`,
+    es_ES: `Actualiza Home Assistant a 2026.8.1, la versión mensual de funciones más su primera versión de corrección.
 
-- Corrige un fallo en la configuración de UniFi con conexiones WAN móviles/5G sin monitores.
-- Corrige la autenticación de ProxmoxVE cuando el reino (realm) contiene letras mayúsculas.
-- Corrige identificadores únicos duplicados en los sensores binarios de Hikvision y evita que las reparaciones de FRITZ!Box Tools sean persistentes.
-- Corrige varios problemas de Overkiz: la segunda zona de calefacción de Hitachi Yutaki usaba los estados de la zona 1, y la apertura y el cierre de las persianas RTSGeneric.
-- Mejora la compatibilidad con Roborock: detección dinámica de la base, reparación del mapeo de segmentos y filtrado de protocolos A01.
-- Actualiza ZHA a 2.0.1, la interfaz a 20260624.6 y dependencias principales como aiohttp y yarl.
+- Home Assistant ahora gestiona la configuración de su servidor web (puerto, proxies de confianza) desde su propia interfaz en lugar de \`configuration.yaml\`. StartOS traslada por ti la configuración del proxy inverso, así que no hay nada que hacer: mantén el puerto 8123 para que el panel siga siendo accesible.
+- Cada integración mantiene ahora su propia entrada de dispositivo en lugar de fusionar los dispositivos configurados por dos integraciones. Los dispositivos fusionados se separan automáticamente y puede aparecer una reparación.
+- Ya puedes renombrar los identificadores de entidad y controlar su orden.
+- Herramientas para desarrolladores pasa a llamarse simplemente Herramientas, y se ha eliminado la palabra «avanzado»/«experto» de unos 43 lugares.
+- Nuevos disparadores y condiciones de luna y vibración, búsqueda en el explorador multimedia y una página rediseñada de Home Assistant Cloud.
+- Cambios incompatibles: se eliminan Volvo On Call y Permobil, desaparece el atributo obsoleto \`battery_level\` de los robots aspiradores (usa el sensor de batería), UniFi Protect requiere la versión 7.1 o posterior y elimina los dispositivos AI Port y las puntuaciones de detección, y Paperless-ngx requiere un servidor 2.19 o posterior.
 
-Notas de la versión completas: https://github.com/home-assistant/core/releases/tag/2026.7.3 y https://github.com/home-assistant/core/releases/tag/2026.7.4`,
-    de_DE: `Aktualisiert Home Assistant auf 2026.7.4 und fasst damit die Fehlerbehebungs-Releases 2026.7.3 und 2026.7.4 zusammen. Keine neuen Funktionen und keine Breaking Changes.
+Notas de la versión completas: https://www.home-assistant.io/blog/2026/08/05/release-20268/ y https://github.com/home-assistant/core/releases/tag/2026.8.1`,
+    de_DE: `Aktualisiert Home Assistant auf 2026.8.1, das monatliche Funktions-Release samt erstem Fehlerbehebungs-Release.
 
-- Behebt einen Absturz bei der UniFi-Einrichtung mit Mobilfunk-/5G-WAN-Verbindungen ohne Monitore.
-- Behebt die fehlschlagende ProxmoxVE-Authentifizierung, wenn der Realm Großbuchstaben enthält.
-- Behebt doppelte eindeutige IDs bei Hikvision-Binärsensoren und sorgt dafür, dass FRITZ!Box-Tools-Reparaturen nicht mehr dauerhaft sind.
-- Behebt mehrere Overkiz-Probleme: die zweite Heizzone von Hitachi Yutaki nutzte die Zustände von Zone 1, sowie Öffnen und Schließen von RTSGeneric-Rollläden.
-- Verbessert die Roborock-Unterstützung: dynamische Dock-Erkennung, Reparatur der Segmentzuordnung und Filterung der A01-Protokolle.
-- Aktualisiert ZHA auf 2.0.1, das Frontend auf 20260624.6 sowie Kernabhängigkeiten wie aiohttp und yarl.
+- Home Assistant verwaltet die Einstellungen seines Webservers (Port, vertrauenswürdige Proxys) jetzt in der eigenen Oberfläche statt in \`configuration.yaml\`. StartOS überträgt die Reverse-Proxy-Einstellungen für dich, es ist also nichts zu tun — belasse den Port bei 8123, damit das Dashboard erreichbar bleibt.
+- Jede Integration behält nun ihren eigenen Geräteeintrag, statt Geräte aus zwei Integrationen zusammenzuführen. Zusammengeführte Geräte werden automatisch getrennt, und eine Reparatur kann erscheinen.
+- Entitäts-IDs lassen sich jetzt umbenennen und in ihrer Reihenfolge steuern.
+- Aus den Entwicklerwerkzeugen werden schlicht die Werkzeuge, und die Begriffe „erweitert“/„Experte“ verschwinden an rund 43 Stellen.
+- Neue Trigger und Bedingungen für Mond und Vibration, Mediensuche im Medien-Browser und eine neu gestaltete Home-Assistant-Cloud-Seite.
+- Breaking Changes: Volvo On Call und Permobil wurden entfernt, das veraltete Attribut \`battery_level\` fällt bei Saugrobotern weg (nutze den Batteriesensor), UniFi Protect erfordert 7.1 oder neuer und entfernt AI-Port-Geräte sowie Erkennungswerte, und Paperless-ngx erfordert Server 2.19 oder neuer.
 
-Vollständige Versionshinweise: https://github.com/home-assistant/core/releases/tag/2026.7.3 und https://github.com/home-assistant/core/releases/tag/2026.7.4`,
-    pl_PL: `Aktualizuje Home Assistant do 2026.7.4, obejmując wydania poprawkowe 2026.7.3 i 2026.7.4. Bez nowych funkcji i bez zmian powodujących niezgodność.
+Vollständige Versionshinweise: https://www.home-assistant.io/blog/2026/08/05/release-20268/ und https://github.com/home-assistant/core/releases/tag/2026.8.1`,
+    pl_PL: `Aktualizuje Home Assistant do 2026.8.1, comiesięcznego wydania funkcji wraz z pierwszym wydaniem poprawkowym.
 
-- Naprawia awarię konfiguracji UniFi przy połączeniach WAN komórkowych/5G bez monitorów.
-- Naprawia uwierzytelnianie ProxmoxVE, gdy nazwa realmu zawiera wielkie litery.
-- Naprawia zduplikowane unikalne identyfikatory czujników binarnych Hikvision i sprawia, że naprawy FRITZ!Box Tools nie są trwałe.
-- Naprawia kilka problemów z Overkiz: druga strefa grzewcza Hitachi Yutaki używała stanów strefy 1 oraz otwieranie i zamykanie rolet RTSGeneric.
-- Ulepsza obsługę Roborock: dynamiczne wykrywanie stacji dokującej, naprawę mapowania segmentów i filtrowanie protokołów A01.
-- Aktualizuje ZHA do 2.0.1, interfejs do 20260624.6 oraz kluczowe zależności, w tym aiohttp i yarl.
+- Home Assistant zarządza teraz ustawieniami swojego serwera WWW (port, zaufane proxy) we własnym interfejsie zamiast w \`configuration.yaml\`. StartOS przenosi za Ciebie ustawienia odwrotnego proxy, więc nie musisz nic robić — pozostaw port 8123, aby panel pozostał dostępny.
+- Każda integracja zachowuje teraz własny wpis urządzenia zamiast łączyć urządzenia skonfigurowane przez dwie integracje. Połączone urządzenia są rozdzielane automatycznie i może pojawić się naprawa.
+- Możesz teraz zmieniać nazwy identyfikatorów encji i decydować o ich kolejności.
+- Narzędzia deweloperskie to teraz po prostu Narzędzia, a określenia „zaawansowane”/„eksperckie” zniknęły z około 43 miejsc.
+- Nowe wyzwalacze i warunki dotyczące księżyca i wibracji, wyszukiwanie w przeglądarce multimediów oraz przeprojektowana strona Home Assistant Cloud.
+- Zmiany powodujące niezgodność: usunięto Volvo On Call i Permobil, zniknął przestarzały atrybut \`battery_level\` w robotach sprzątających (użyj czujnika baterii), UniFi Protect wymaga wersji 7.1 lub nowszej i usuwa urządzenia AI Port oraz oceny wykrywania, a Paperless-ngx wymaga serwera 2.19 lub nowszego.
 
-Pełne informacje o wydaniu: https://github.com/home-assistant/core/releases/tag/2026.7.3 i https://github.com/home-assistant/core/releases/tag/2026.7.4`,
-    fr_FR: `Met à jour Home Assistant vers 2026.7.4, regroupant les versions correctives 2026.7.3 et 2026.7.4. Aucune nouvelle fonctionnalité ni changement incompatible.
+Pełne informacje o wydaniu: https://www.home-assistant.io/blog/2026/08/05/release-20268/ i https://github.com/home-assistant/core/releases/tag/2026.8.1`,
+    fr_FR: `Met à jour Home Assistant vers 2026.8.1, la version mensuelle de fonctionnalités et sa première version corrective.
 
-- Corrige un plantage de la configuration UniFi sur les connexions WAN cellulaires/5G sans moniteurs.
-- Corrige l'authentification ProxmoxVE qui échouait lorsque le domaine (realm) contient des majuscules.
-- Corrige les identifiants uniques dupliqués des capteurs binaires Hikvision et rend non persistantes les réparations de FRITZ!Box Tools.
-- Corrige plusieurs problèmes Overkiz : la seconde zone de chauffage Hitachi Yutaki utilisait les états de la zone 1, ainsi que l'ouverture et la fermeture des volets RTSGeneric.
-- Améliore la prise en charge de Roborock : détection dynamique de la station, réparation du mappage des segments et filtrage des protocoles A01.
-- Met à jour ZHA vers 2.0.1, l'interface vers 20260624.6 et des dépendances centrales dont aiohttp et yarl.
+- Home Assistant gère désormais les réglages de son serveur web (port, proxys de confiance) dans sa propre interface plutôt que dans \`configuration.yaml\`. StartOS y transfère les réglages du proxy inverse pour vous : rien à faire, laissez le port sur 8123 pour que le tableau de bord reste accessible.
+- Chaque intégration conserve maintenant sa propre fiche d'appareil au lieu de fusionner les appareils configurés par deux intégrations. Les appareils fusionnés sont séparés automatiquement et une réparation peut apparaître.
+- Vous pouvez désormais renommer les identifiants d'entité et contrôler leur ordre.
+- Les outils pour développeurs deviennent simplement les Outils, et les mots « avancé »/« expert » disparaissent d'environ 43 endroits.
+- Nouveaux déclencheurs et conditions pour la lune et les vibrations, recherche dans le navigateur multimédia et page Home Assistant Cloud repensée.
+- Changements incompatibles : Volvo On Call et Permobil sont supprimés, l'attribut obsolète \`battery_level\` disparaît des robots aspirateurs (utilisez le capteur de batterie), UniFi Protect exige la version 7.1 ou plus récente et supprime les appareils AI Port ainsi que les scores de détection, et Paperless-ngx exige un serveur 2.19 ou plus récent.
 
-Notes de version complètes : https://github.com/home-assistant/core/releases/tag/2026.7.3 et https://github.com/home-assistant/core/releases/tag/2026.7.4`,
+Notes de version complètes : https://www.home-assistant.io/blog/2026/08/05/release-20268/ et https://github.com/home-assistant/core/releases/tag/2026.8.1`,
   },
   migrations: {
     up: async ({ effects }) => {},

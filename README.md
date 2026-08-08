@@ -54,7 +54,8 @@
 
 **StartOS-specific files:**
 
-- `configuration.yaml` — Home Assistant writes the standard upstream default on first install (`default_config`, `frontend.themes`, `!include` directives for `automations.yaml`/`scripts.yaml`/`scenes.yaml`). StartOS layers an **enforced** `http` block on top for the StartOS reverse proxy (`use_x_forwarded_for: true`, `trusted_proxies: 10.0.3.0/24`) — manual edits to those two keys are reverted on the next package init. All other settings are user-editable via SSH.
+- `configuration.yaml` — Home Assistant writes the standard upstream default on first install (`default_config`, `frontend.themes`, `!include` directives for `automations.yaml`/`scripts.yaml`/`scenes.yaml`). Every setting in it is user-editable via SSH.
+- `.storage/http` — Home Assistant's own web server settings, which it manages from **Settings → System → Network** as of 2026.8 and reads back on every start. The package seeds the StartOS reverse proxy trust into it at install (`use_x_forwarded_for: true`, `trusted_proxies: 10.0.3.0/24`) and leaves it to the user afterwards. Home Assistant imports a `configuration.yaml` `http:` block into this store once and ignores the YAML from then on, so package init strips any block left over from an older release.
 
 ---
 
@@ -83,7 +84,7 @@ Home Assistant configuration is managed through upstream methods:
 - **configuration.yaml** — Advanced configuration (in `/config` volume)
 - **YAML files** — Automations, scripts, scenes can be file-based
 
-StartOS does not expose any Home Assistant settings through actions. The only StartOS-managed piece of `configuration.yaml` is the `http` block (reverse proxy trust) — see [Volume and Data Layout](#volume-and-data-layout). Everything else is user-managed.
+StartOS does not expose any Home Assistant settings through actions, and `configuration.yaml` is entirely user-managed. The one setting the package seeds is the reverse proxy trust in Home Assistant's own web server settings store — see [Volume and Data Layout](#volume-and-data-layout).
 
 ---
 

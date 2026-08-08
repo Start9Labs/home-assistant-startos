@@ -1,13 +1,6 @@
 import { FileHelper, yaml, z } from '@start9labs/start-sdk'
 import { sdk } from '../sdk'
 
-const trustedProxy = '10.0.3.0/24' as const
-
-const httpDefaults = {
-  use_x_forwarded_for: true as const,
-  trusted_proxies: [trustedProxy],
-}
-
 // HA's YAML loader supports several custom tags. Without registering handlers
 // for each, the standard parser silently drops them on read — corrupting any
 // such directive (e.g. `themes: !include_dir_merge_named themes`) when we
@@ -36,17 +29,10 @@ const customTags: yaml.ScalarTag[] = HA_TAGS.map((tag) => ({
   stringify: (item) => (item.value as HaTag).value,
 }))
 
+// Home Assistant owns the web server settings in its own store as of 2026.8 and
+// ignores this block, so the package only models it to strip what it left behind.
 const shape = z.object({
-  http: z
-    .object({
-      use_x_forwarded_for: z
-        .literal(httpDefaults.use_x_forwarded_for)
-        .catch(httpDefaults.use_x_forwarded_for),
-      trusted_proxies: z
-        .array(z.literal(trustedProxy))
-        .catch(httpDefaults.trusted_proxies),
-    })
-    .catch(httpDefaults),
+  http: z.unknown().optional(),
 })
 
 export const configurationYaml = FileHelper.yaml(

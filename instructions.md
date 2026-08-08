@@ -8,7 +8,7 @@
 
 - A **Web UI** interface that opens the standard Home Assistant dashboard — onboarding wizard on first launch, then the dashboards, integrations, automations, and settings you'd see on any Container install.
 - The **Container** flavour of Home Assistant (not Home Assistant OS). Home Assistant runs as a single image; there is no Supervisor and no Add-on store.
-- A `config` volume holding `configuration.yaml` and the standard upstream side files (`automations.yaml`, `scripts.yaml`, `scenes.yaml`, `secrets.yaml`). Home Assistant writes the upstream defaults on first install, and StartOS layers an enforced `http` block on top so the reverse proxy can reach the dashboard.
+- A `config` volume holding `configuration.yaml` and the standard upstream side files (`automations.yaml`, `scripts.yaml`, `scenes.yaml`, `secrets.yaml`). Home Assistant writes the upstream defaults on first install, and StartOS sets up the reverse proxy trust in Home Assistant's web server settings so the dashboard is reachable.
 
 ## Getting set up
 
@@ -47,4 +47,4 @@ This is the **Container** installation of Home Assistant, not Home Assistant OS.
 - **Home Assistant's built-in Backup UI** — also Supervisor-only. Use StartOS backups (the `config` and `main` volumes are included) instead.
 - **Home Assistant's own update mechanism** — updates ship through the StartOS marketplace.
 
-The `http:` block in `configuration.yaml` (`use_x_forwarded_for` and `trusted_proxies`) is managed by StartOS so that the reverse proxy can reach the dashboard. If you edit those two keys over SSH they are reverted on the next package init; every other key in `configuration.yaml` is yours to edit freely.
+Home Assistant's web server settings live under **Settings → System → Network** as of 2026.8. StartOS sets them up for you — trusted proxy `10.0.3.0/24` with `use_x_forwarded_for` enabled, on port 8123 — so the reverse proxy can reach the dashboard. Leave the port and the trusted proxy as they are; changing either makes the **Web UI** interface unreachable. If you do lock yourself out, Home Assistant restores the previous settings and restarts after five minutes. Every key in `configuration.yaml` is yours to edit freely.
