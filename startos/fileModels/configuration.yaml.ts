@@ -29,8 +29,9 @@ const customTags: yaml.ScalarTag[] = HA_TAGS.map((tag) => ({
   stringify: (item) => (item.value as HaTag).value,
 }))
 
-// Home Assistant owns the web server settings in its own store as of 2026.8 and
-// ignores this block, so the package only models it to strip what it left behind.
+// Home Assistant owns the web server settings in its own store and ignores this
+// block, which is modelled only so the version migration can drop what earlier
+// releases of this package wrote.
 const shape = z.object({
   http: z.unknown().optional(),
 })

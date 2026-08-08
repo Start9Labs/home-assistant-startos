@@ -1,4 +1,5 @@
 import { IMPOSSIBLE, VersionInfo } from '@start9labs/start-sdk'
+import { configurationYaml } from '../fileModels/configuration.yaml'
 
 export const current = VersionInfo.of({
   version: '2026.8.1:0',
@@ -55,7 +56,14 @@ Pełne informacje o wydaniu: https://www.home-assistant.io/blog/2026/08/05/relea
 Notes de version complètes : https://www.home-assistant.io/blog/2026/08/05/release-20268/ et https://github.com/home-assistant/core/releases/tag/2026.8.1`,
   },
   migrations: {
-    up: async ({ effects }) => {},
+    // Home Assistant imports a `http:` block into its settings store once and
+    // ignores the YAML from then on, flagging a repair while it is still
+    // there. Drop the block earlier releases of this package wrote; the rest
+    // of the file is the user's. Migrations run ahead of the other init
+    // handlers, so `bootstrapHa` never sees the block.
+    up: async ({ effects }) => {
+      await configurationYaml.merge(effects, { http: undefined })
+    },
     down: IMPOSSIBLE,
   },
 })

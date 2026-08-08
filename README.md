@@ -55,7 +55,7 @@
 **StartOS-specific files:**
 
 - `configuration.yaml` — Home Assistant writes the standard upstream default on first install (`default_config`, `frontend.themes`, `!include` directives for `automations.yaml`/`scripts.yaml`/`scenes.yaml`). Every setting in it is user-editable via SSH.
-- `.storage/http` — Home Assistant's own web server settings, which it manages from **Settings → System → Network** as of 2026.8 and reads back on every start. The package seeds the StartOS reverse proxy trust into it at install (`use_x_forwarded_for: true`, `trusted_proxies: 10.0.3.0/24`) and leaves it to the user afterwards. Home Assistant imports a `configuration.yaml` `http:` block into this store once and ignores the YAML from then on, so package init strips any block left over from an older release.
+- `.storage/http` — Home Assistant's own web server settings, which it manages from **Settings → System → Network** and reads back on every start. Home Assistant is the only writer: when the file is absent, `bootstrapHa` runs Home Assistant once to author it before touching it. Init then makes sure `10.0.3.0/24` is in `trusted_proxies`, appending it if it isn't and enabling `use_x_forwarded_for` only when that key is absent, so the StartOS reverse proxy stays trusted without disturbing proxies or preferences the user set.
 
 ---
 
@@ -84,7 +84,7 @@ Home Assistant configuration is managed through upstream methods:
 - **configuration.yaml** — Advanced configuration (in `/config` volume)
 - **YAML files** — Automations, scripts, scenes can be file-based
 
-StartOS does not expose any Home Assistant settings through actions, and `configuration.yaml` is entirely user-managed. The one setting the package seeds is the reverse proxy trust in Home Assistant's own web server settings store — see [Volume and Data Layout](#volume-and-data-layout).
+StartOS does not expose any Home Assistant settings through actions, and `configuration.yaml` is entirely user-managed. The one setting the package maintains is the reverse proxy trust in Home Assistant's own web server settings store — see [Volume and Data Layout](#volume-and-data-layout).
 
 ---
 
