@@ -13,3 +13,14 @@
 ## Applying the bump
 
 - In `startos/manifest/index.ts`, set `images['home-assistant'].source.dockerTag` to `ghcr.io/home-assistant/home-assistant:<new version>`.
+
+### Bundled HACS archive
+
+`assets/hacs.zip` is a second upstream, bundled rather than fetched so the Set Up HACS
+action needs no network access. Bump it by replacing the archive with a newer release
+of [hacs/integration](https://github.com/hacs/integration) — never by having the action
+download at runtime:
+
+```sh
+gh release view -R hacs/integration --json tagName -q .tagName
+```
