@@ -1,43 +1,43 @@
 import { VersionInfo } from '@start9labs/start-sdk'
 
 export const current = VersionInfo.of({
-  version: '2026.9.1:0',
+  version: '2026.9.2:0',
   releaseNotes: {
-    en_US: `Updated Home Assistant to 2026.9.1.
+    en_US: `Updated Home Assistant to 2026.9.2.
 
-- Fixes backup receiving to stream data reliably and avoid deadlocks.
-- Corrects inline-image handling in SMTP notifications.
-- Includes integration and device-registry fixes, including UniFi Protect host overrides and cleanup of unreachable deleted devices.
+- Redacts credentials from go2rtc server logs.
+- Repairs malformed local to-do calendars and preserves Remote Calendar form values after errors.
+- Improves reliability across integrations including SFTP Storage, Tesla Fleet, ViCare, OpenHome, and ESPHome.
 
-Full release notes: https://github.com/home-assistant/core/releases/tag/2026.9.1`,
-    es_ES: `Actualiza Home Assistant a 2026.9.1.
+Full release notes: https://github.com/home-assistant/core/releases/tag/2026.9.2`,
+    es_ES: `Actualiza Home Assistant a 2026.9.2.
 
-- Corrige la recepción de copias de seguridad para transmitir los datos de forma fiable y evitar bloqueos.
-- Corrige el manejo de imágenes insertadas en las notificaciones SMTP.
-- Incluye correcciones de integraciones y del registro de dispositivos, como la sustitución del host en UniFi Protect y la limpieza de dispositivos eliminados inaccesibles.
+- Oculta las credenciales en los registros del servidor go2rtc.
+- Repara calendarios locales de tareas con formato incorrecto y conserva los valores del formulario de Calendario remoto después de errores.
+- Mejora la fiabilidad de integraciones como Almacenamiento SFTP, Tesla Fleet, ViCare, OpenHome y ESPHome.
 
-Notas completas de la versión: https://github.com/home-assistant/core/releases/tag/2026.9.1`,
-    de_DE: `Aktualisiert Home Assistant auf 2026.9.1.
+Notas completas de la versión: https://github.com/home-assistant/core/releases/tag/2026.9.2`,
+    de_DE: `Aktualisiert Home Assistant auf 2026.9.2.
 
-- Behebt den Empfang von Sicherungen, damit Daten zuverlässig gestreamt und Deadlocks vermieden werden.
-- Korrigiert die Verarbeitung eingebetteter Bilder in SMTP-Benachrichtigungen.
-- Enthält Fehlerbehebungen für Integrationen und die Geräteregistrierung, darunter die Host-Überschreibung für UniFi Protect und das Bereinigen nicht erreichbarer gelöschter Geräte.
+- Entfernt Zugangsdaten aus den go2rtc-Serverprotokollen.
+- Repariert fehlerhaft formatierte lokale Aufgaben-Kalender und behält Formularwerte des Remote-Kalenders nach Fehlern bei.
+- Verbessert die Zuverlässigkeit von Integrationen wie SFTP-Speicher, Tesla Fleet, ViCare, OpenHome und ESPHome.
 
-Vollständige Versionshinweise: https://github.com/home-assistant/core/releases/tag/2026.9.1`,
-    pl_PL: `Aktualizuje Home Assistant do 2026.9.1.
+Vollständige Versionshinweise: https://github.com/home-assistant/core/releases/tag/2026.9.2`,
+    pl_PL: `Aktualizuje Home Assistant do 2026.9.2.
 
-- Naprawia odbieranie kopii zapasowych, zapewniając niezawodne strumieniowanie danych i unikając zakleszczeń.
-- Poprawia obsługę osadzonych obrazów w powiadomieniach SMTP.
-- Zawiera poprawki integracji i rejestru urządzeń, w tym zastępowania hosta UniFi Protect oraz usuwania nieosiągalnych, skasowanych urządzeń.
+- Ukrywa dane logowania w dziennikach serwera go2rtc.
+- Naprawia nieprawidłowo sformatowane lokalne kalendarze zadań i zachowuje wartości formularza Kalendarza zdalnego po błędach.
+- Poprawia niezawodność integracji, takich jak Pamięć SFTP, Tesla Fleet, ViCare, OpenHome i ESPHome.
 
-Pełne informacje o wydaniu: https://github.com/home-assistant/core/releases/tag/2026.9.1`,
-    fr_FR: `Met à jour Home Assistant vers 2026.9.1.
+Pełne informacje o wydaniu: https://github.com/home-assistant/core/releases/tag/2026.9.2`,
+    fr_FR: `Met à jour Home Assistant vers 2026.9.2.
 
-- Corrige la réception des sauvegardes afin de diffuser les données de manière fiable et d'éviter les interblocages.
-- Corrige la gestion des images intégrées dans les notifications SMTP.
-- Inclut des correctifs pour les intégrations et le registre des appareils, notamment le remplacement de l'hôte UniFi Protect et le nettoyage des appareils supprimés inaccessibles.
+- Masque les identifiants dans les journaux du serveur go2rtc.
+- Répare les calendriers de tâches locaux mal formés et conserve les valeurs du formulaire Calendrier distant après une erreur.
+- Améliore la fiabilité d'intégrations telles que Stockage SFTP, Tesla Fleet, ViCare, OpenHome et ESPHome.
 
-Notes de version complètes : https://github.com/home-assistant/core/releases/tag/2026.9.1`,
+Notes de version complètes : https://github.com/home-assistant/core/releases/tag/2026.9.2`,
   },
   migrations: {},
 })
