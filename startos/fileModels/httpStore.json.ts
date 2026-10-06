@@ -9,10 +9,10 @@ export const trustedProxy = '10.0.3.0/24' as const
 // defaulted, so a read can tell an absent key from one already holding the
 // value the package wants; `stable` is absent until Home Assistant migrates
 // the store, so it is optional too.
-const shape = z.object({
-  data: z.object({
+const shape = z.looseObject({
+  data: z.looseObject({
     stable: z
-      .object({
+      .looseObject({
         use_x_forwarded_for: z.boolean().optional(),
         trusted_proxies: z.array(z.string()).optional(),
       })

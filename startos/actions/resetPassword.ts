@@ -32,7 +32,7 @@ const inputSpec = InputSpec.of({
     const usernames = await readUsernames()
     return {
       name: i18n('Username'),
-      default: usernames[0] ?? '',
+      default: usernames[0] ?? null,
       values: Object.fromEntries(usernames.map((u) => [u, u])),
     }
   }),

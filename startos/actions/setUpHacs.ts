@@ -64,8 +64,7 @@ export const setUpHacs = sdk.Action.withoutInput(
             '/assets/hacs.zip',
             '/config/custom_components/hacs',
           ],
-          {},
-          null,
+          { timeout: null },
         )
         // Fail loudly if the integration manifest did not land.
         await sub.execFail([

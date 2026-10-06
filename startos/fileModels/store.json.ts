@@ -5,11 +5,9 @@ import { sdk } from '../sdk'
 // Written by the install/uninstall actions; read reactively in their metadata
 // so the two actions toggle visibility (only one is shown at a time) and a
 // re-install can't downgrade an already-bootstrapped (and self-updating) HACS.
-const shape = z
-  .object({
-    hacsInstalled: z.boolean().catch(false),
-  })
-  .strip()
+const shape = z.looseObject({
+  hacsInstalled: z.boolean().catch(false),
+})
 
 export const storeJson = FileHelper.json(
   {
