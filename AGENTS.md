@@ -18,16 +18,23 @@ Freshly scaffolded? Work the
 guide page, not a file in this repo — read it, don't copy it in.
 
 Keep `README.md` (technical reference for an AI support or administering agent) and
-`instructions.md` (end-user docs) in sync with your changes.
+`instructions.md` (end-user docs) in sync with your changes. This file restates neither:
+whoever changes the package has both, so it carries only what they don't — repo mechanics,
+a change that looks right and is not, where the next thing gets added, a naming trap, a
+build or test invocation particular to this repo.
 
-**Bugs and feature requests are GitHub issues on this repo** — file them as you find them.
+**Fix a defect you spot rather than reporting it** — you have the package open and the
+context to be sure. File **a GitHub issue on this repo** only when the call isn't yours to
+make: you can't pin the cause down, two defensible fixes exist, or it's too large to ride on
+the work in hand. An open issue is a report, not a queue — implement one when you're asked
+to or when it's labelled `Approved`, then close it with `Closes #<n>`.
+
 Don't record work in the repo instead: no `TODO.md`, no `NOTES.md`, no `PLAN.md`. What you
 verified, tried, and decided belongs in the commit message and the PR body.
 
 ## This repo
 
-- **Model only the keys of `.storage/http` that the proxy depends on, and default none of them.** Home Assistant owns that store and reads it back unvalidated; an unmodelled key must round-trip untouched, and a defaulted one would make "absent" indistinguishable from "already correct". Append to `trusted_proxies` rather than replacing it.
-- **Leave a store with no `stable` section alone.** Home Assistant has not migrated it yet, that migration carries the trust setting across itself, and writing in would hand it a hybrid to read.
-- **`configuration.yaml`'s custom-tag handlers are required for correctness, not convenience.** Without them the YAML round-trip silently drops `!include`, `!secret`, `!env_var`, and the `!include_dir_*` family — directives users add over SSH. Extend the list rather than parsing the file plainly.
-- **`reset-password` must stay `only-stopped`.** Home Assistant caches the auth store and rewrites it on graceful shutdown, so a reset against a running instance is silently reverted.
-- **The install bootstrap exists because `.storage/http` does not exist until Home Assistant writes it.** It waits for `scenes.yaml` _and_ `.storage/http` — the last file the default-config writer emits, plus one only written once the web server has come up. Don't reduce it to a fixed sleep or to either file alone.
+- **In `.storage/http`, model only the proxy keys, default none, append to `trusted_proxies`, and leave a store with no `stable` alone.** Home Assistant owns that store: a default would hide an absent key, and an unmigrated store has to reach Home Assistant's own migration untouched.
+- **Keep `configuration.yaml`'s custom-tag handlers, and extend the list rather than parsing the file plainly.** Without them a round-trip drops the `!include`, `!secret` and `!env_var` directives users add over SSH.
+- **`reset-password` must stay `only-stopped`.** Home Assistant rewrites the auth store on a graceful shutdown, which silently reverts a reset made while it runs.
+- **Don't reduce the install bootstrap's wait to a fixed sleep or to one file.** `scenes.yaml` and `.storage/http` together are the only sign that both the default config and the settings store exist.

@@ -32,7 +32,7 @@ const customTags: yaml.ScalarTag[] = HA_TAGS.map((tag) => ({
 // Home Assistant owns the web server settings in its own store and ignores this
 // block, which is modelled only so the version migration can drop what earlier
 // releases of this package wrote.
-const shape = z.object({
+const shape = z.looseObject({
   http: z.unknown().optional(),
 })
 
