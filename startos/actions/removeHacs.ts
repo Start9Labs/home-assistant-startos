@@ -43,6 +43,11 @@ export const removeHacs = sdk.Action.withoutInput(
         // user's and are left in place.
         await sub.execFail(['rm', '-rf', '/config/custom_components/hacs'])
         await sub.execFail(['rm', '-rf', '/config/.storage/hacs'])
+        await sub.execFail([
+          'python3',
+          '-c',
+          "from pathlib import Path; [path.unlink() for path in Path('/config/.storage').glob('hacs.*') if path.is_file()]",
+        ])
       },
     )
 

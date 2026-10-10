@@ -29,7 +29,7 @@ Everything you do day-to-day — adding integrations, building automations, edit
 
 [HACS](https://hacs.xyz) installs community **integrations, dashboard cards, and themes** (not add-ons — those need Home Assistant OS) from inside Home Assistant. Two caveats first: it runs **community code that Start9 does not review**, with full access inside Home Assistant, and it needs a **free GitHub account**. What it installs stays in the `config` volume, so StartOS backups cover it.
 
-**Set Up HACS** adds the bundled HACS files and reloads Home Assistant; **Remove HACS** deletes them (it replaces Set Up once HACS is installed). Set Up does **not** activate HACS — finish that yourself:
+**Set Up HACS** adds the bundled HACS files and reloads Home Assistant; **Remove HACS** deletes them and HACS's saved store data (it replaces Set Up once HACS is installed). Set Up does **not** activate HACS — finish that yourself:
 
 ### Finish setting up HACS
 
@@ -44,7 +44,7 @@ After this, **HACS updates itself** (Settings → Updates) — nothing to do fro
 This is the **Container** installation of Home Assistant, not Home Assistant OS. The following upstream features are not available and the upstream docs that reference them do not apply:
 
 - **Add-ons / the Add-on Store** — requires the Supervisor, which only ships with Home Assistant OS and Home Assistant Supervised. Integrations that upstream documents as "install the X add-on" (Z-Wave JS, Mosquitto, Thread border router, Whisper, Piper, etc.) need to be installed and run separately. This does **not** affect HACS, which installs community _integrations_, cards, and themes (not add-ons) — see [Community store (HACS)](#community-store-hacs).
-- **Home Assistant's built-in Backup UI** — also Supervisor-only. Use StartOS backups (the `config` and `main` volumes are included) instead.
+- **Home Assistant's built-in Backup UI** is available, but it does not include the StartOS-side state that tracks whether HACS is installed. Use StartOS backups to capture the complete package, including both volumes.
 - **Home Assistant's own update mechanism** — updates ship through the StartOS marketplace.
 
 Home Assistant's web server settings live under **Settings → System → Network**. StartOS sets them up for you — trusted proxy `10.0.3.0/24` with `use_x_forwarded_for` enabled, on port 8123 — so the reverse proxy can reach the dashboard. Leave the port and the trusted proxy as they are; changing either makes the **Web UI** interface unreachable. Home Assistant guards against this by restoring the previous settings and restarting five minutes after a change you make in its interface, and StartOS puts its trusted proxy back on the next service update. You can add trusted proxies of your own alongside it. Every key in `configuration.yaml` is yours to edit freely.
