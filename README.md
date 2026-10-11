@@ -35,7 +35,7 @@
 
 ## Image and Container Runtime
 
-The upstream image is used unmodified, with its own entrypoint, run as the container's init process.
+The upstream Apache-2.0-licensed image is used unmodified, with its own entrypoint, run as the container's init process.
 
 | Property      | Value                                                                   |
 | ------------- | ----------------------------------------------------------------------- |
@@ -138,7 +138,7 @@ Adds the community store's files to the configuration tree. Setup is finished in
 
 The mirror of the above, visible only while HACS is installed.
 
-- **What it changes:** deletes HACS's own files and its stored data. **Anything installed _through_ HACS is left in place** — integrations, cards, and themes are yours — and your GitHub authorization is not revoked.
+- **What it changes:** deletes HACS's own files, its `.storage/hacs.*` stores, and the legacy `.storage/hacs` directory. **Anything installed _through_ HACS is left in place** — integrations, cards, and themes are yours — and your GitHub authorization is not revoked.
 - **Order matters:** remove the HACS integration inside Home Assistant first, then run this.
 - **Cost:** seconds, then a restart if running.
 
@@ -163,11 +163,11 @@ Both volumes are copied wholesale — `sdk.Backups.ofVolumes('main', 'config')`.
 - **Included:** the whole configuration tree — automations, dashboards, the user database, integration credentials, the recorder database, and anything HACS installed.
 - **Restore:** complete, and no reconfiguration is needed. The trusted-proxy setting comes back with the store, and init leaves it alone since it is already present.
 
-The recorder database grows with history, so the backup grows with it.
+The recorder database grows with history, so the backup grows with it. Home Assistant's native Backup UI is also available in Container installs, but it does not capture this package's `main` volume; StartOS backups include both volumes.
 
 ## Limitations and Differences
 
-1. **Home Assistant Core, not Home Assistant OS.** The supervisor and its add-on store are not part of this package; HACS is the community equivalent and is optional.
+1. **Home Assistant Core, not Home Assistant OS.** The supervisor and its add-on store are not part of this package; optional HACS provides community integrations, cards, and themes, not supervisor add-ons.
 2. **Leave the web-server port at 8123.** It is changeable inside Home Assistant and doing so makes the dashboard unreachable.
 3. **The StartOS bridge is added to the trusted-proxy list** so the reverse proxy in front of Home Assistant works. Existing entries are preserved.
 4. **Resetting a password requires stopping the service**, because Home Assistant would otherwise overwrite the change on shutdown.
