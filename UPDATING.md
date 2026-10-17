@@ -6,7 +6,7 @@
 
   ```sh
   gh api 'repos/home-assistant/core/tags?per_page=100' --jq '.[].name'
-  gh release view <tag> -R home-assistant/core --json body,prerelease
+  gh release view <tag> -R home-assistant/core --json body,isPrerelease
   docker manifest inspect ghcr.io/home-assistant/home-assistant:<tag>
   ```
 
