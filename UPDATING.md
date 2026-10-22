@@ -12,11 +12,12 @@
 
   Choose the newest stable release whose image is published for both amd64 and arm64. Home Assistant uses year.month.patch versions; monthly releases can include breaking changes, while patches normally contain bug fixes. Read the monthly release's compatibility notes when crossing months.
 
-  The pin lives in `startos/manifest/index.ts` on `images['home-assistant'].source.dockerTag`. Preserve the complete upstream version in `startos/versions/current.ts`, followed by `:0`.
+  The pin lives in `startos/manifest/index.ts` on `images['home-assistant'].source.dockerBuild.buildArgs.IMAGE`. Preserve the complete upstream version in `startos/versions/current.ts`, followed by `:0`.
 
 ## Applying the bump
 
-- In `startos/manifest/index.ts`, set `images['home-assistant'].source.dockerTag` to `ghcr.io/home-assistant/home-assistant:<new version>`.
+- Set the image pin above to `ghcr.io/home-assistant/home-assistant:<new version>`.
+- Keep the root `Dockerfile`'s certifi upgrade and CA-bundle check until the upstream image's active certifi bundle is verified to exclude emSign ECC Root CA - G3. Switching back to `dockerTag` before then bypasses the security fix.
 
 ### Bundled HACS archive
 
