@@ -35,11 +35,11 @@
 
 ## Image and Container Runtime
 
-The upstream Apache-2.0-licensed image is used unmodified, with its own entrypoint, run as the container's init process.
+The upstream Apache-2.0-licensed image is used with its own entrypoint, run as the container's init process. The root `Dockerfile` upgrades its `certifi`, the CA store Home Assistant verifies outbound TLS against, until upstream ships an image built on a fixed one.
 
 | Property      | Value                                                                   |
 | ------------- | ----------------------------------------------------------------------- |
-| Image         | `ghcr.io/home-assistant/home-assistant`                                 |
+| Image         | `ghcr.io/home-assistant/home-assistant` + root `Dockerfile`             |
 | Architectures | x86_64, aarch64                                                         |
 | Entrypoint    | Upstream default, run as init                                           |
 | Subcontainer  | `home-assistant-sub` — the `primary` daemon, and the one to `attach` to |
@@ -181,7 +181,7 @@ The recorder database grows with history, so the backup grows with it. Home Assi
 
 ```yaml
 package_id: home-assistant
-image: ghcr.io/home-assistant/home-assistant
+image: ghcr.io/home-assistant/home-assistant + root Dockerfile (certifi upgrade)
 architectures:
   - x86_64
   - aarch64
