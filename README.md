@@ -35,13 +35,13 @@
 
 ## Image and Container Runtime
 
-The upstream Apache-2.0-licensed image is used with its own entrypoint, run as the container's init process. The root `Dockerfile` upgrades its two CA stores until upstream ships an image built on fixed ones: Alpine's system store (`ca-certificates`), which go2rtc and integrations using the default SSL context read, and `certifi`, which Home Assistant's own clients verify outbound TLS against.
+The upstream Apache-2.0-licensed image is used with its own entrypoint, run as the container's init process.
 
-| Property      | Value                                                                   |
-| ------------- | ----------------------------------------------------------------------- |
-| Image         | `ghcr.io/home-assistant/home-assistant` + root `Dockerfile`             |
-| Architectures | x86_64, aarch64                                                         |
-| Entrypoint    | Upstream default, run as init                                           |
+| Property      | Value                                                                |
+| ------------- | -------------------------------------------------------------------- |
+| Image         | `ghcr.io/home-assistant/home-assistant`                                |
+| Architectures | x86_64, aarch64                                                       |
+| Entrypoint    | Upstream default, run as init                                         |
 | Subcontainer  | `home-assistant-sub` — the `primary` daemon, and the one to `attach` to |
 
 Three further subcontainers exist from the same image, each short-lived: `home-assistant-bootstrap` during install, and `reset-password` and `set-up-hacs` / `remove-hacs` for their respective actions.
@@ -181,7 +181,7 @@ The recorder database grows with history, so the backup grows with it. Home Assi
 
 ```yaml
 package_id: home-assistant
-image: ghcr.io/home-assistant/home-assistant + root Dockerfile (ca-certificates + certifi upgrade)
+image: ghcr.io/home-assistant/home-assistant
 architectures:
   - x86_64
   - aarch64

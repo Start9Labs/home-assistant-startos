@@ -14,11 +14,7 @@ export const manifest = setupManifest({
   images: {
     'home-assistant': {
       source: {
-        dockerBuild: {
-          buildArgs: {
-            IMAGE: 'ghcr.io/home-assistant/home-assistant:2026.10.2',
-          },
-        },
+        dockerTag: 'ghcr.io/home-assistant/home-assistant:2026.10.3',
       },
       arch: ['x86_64', 'aarch64'],
     },
