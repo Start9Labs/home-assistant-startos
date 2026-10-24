@@ -1,7 +1,7 @@
 import { VersionInfo } from '@start9labs/start-sdk'
 
 export const current = VersionInfo.of({
-  version: '2026.10.2:1',
+  version: '2026.10.2:2',
   releaseNotes: {
     en_US:
       'Stops trusting certificates from a compromised certificate authority (eMudhra).',
