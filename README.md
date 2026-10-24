@@ -35,7 +35,7 @@
 
 ## Image and Container Runtime
 
-The upstream Apache-2.0-licensed image is used with its own entrypoint, run as the container's init process. The root `Dockerfile` upgrades its `certifi`, the CA store Home Assistant verifies outbound TLS against, until upstream ships an image built on a fixed one.
+The upstream Apache-2.0-licensed image is used with its own entrypoint, run as the container's init process. The root `Dockerfile` upgrades its two CA stores until upstream ships an image built on fixed ones: Alpine's system store (`ca-certificates`), which go2rtc and integrations using the default SSL context read, and `certifi`, which Home Assistant's own clients verify outbound TLS against.
 
 | Property      | Value                                                                   |
 | ------------- | ----------------------------------------------------------------------- |
@@ -181,7 +181,7 @@ The recorder database grows with history, so the backup grows with it. Home Assi
 
 ```yaml
 package_id: home-assistant
-image: ghcr.io/home-assistant/home-assistant + root Dockerfile (certifi upgrade)
+image: ghcr.io/home-assistant/home-assistant + root Dockerfile (ca-certificates + certifi upgrade)
 architectures:
   - x86_64
   - aarch64

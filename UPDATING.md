@@ -17,7 +17,7 @@
 ## Applying the bump
 
 - Set the image pin above to `ghcr.io/home-assistant/home-assistant:<new version>`.
-- Keep the root `Dockerfile`'s certifi upgrade and CA-bundle check until the upstream image's active certifi bundle is verified to exclude emSign ECC Root CA - G3. Switching back to `dockerTag` before then bypasses the security fix.
+- Keep the root `Dockerfile`'s `ca-certificates` and certifi upgrades and their CA-bundle checks until the upstream image's system store and active certifi bundle are both verified to exclude emSign ECC Root CA - G3. Switching back to `dockerTag` before then bypasses the security fix.
 
 ### Bundled HACS archive
 
