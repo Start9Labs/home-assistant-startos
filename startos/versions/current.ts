@@ -1,18 +1,18 @@
 import { VersionInfo } from '@start9labs/start-sdk'
 
 export const current = VersionInfo.of({
-  version: '2026.10.3:0',
+  version: '2026.10.4:0',
   releaseNotes: {
     en_US:
-      'Updated Home Assistant to 2026.10.3. Fixes KNX startup timeouts, Home Connect event handling after token refresh errors, and duplicate UniFi Access events. Full release notes: https://github.com/home-assistant/core/releases/tag/2026.10.3',
+      'Updated Home Assistant to 2026.10.4. Raises the HTTP client header limits to 64 KiB and updates the Lutron Caséta library. Full release notes: https://github.com/home-assistant/core/releases/tag/2026.10.4',
     es_ES:
-      'Actualiza Home Assistant a 2026.10.3. Corrige los tiempos de espera al iniciar KNX, la gestión de eventos de Home Connect tras errores al renovar tokens y los eventos duplicados de UniFi Access. Notas completas: https://github.com/home-assistant/core/releases/tag/2026.10.3',
+      'Actualiza Home Assistant a 2026.10.4. Aumenta los límites de las cabeceras del cliente HTTP a 64 KiB y actualiza la biblioteca de Lutron Caséta. Notas completas: https://github.com/home-assistant/core/releases/tag/2026.10.4',
     de_DE:
-      'Aktualisiert Home Assistant auf 2026.10.3. Behebt KNX-Startzeitüberschreitungen, die Home-Connect-Ereignisverarbeitung nach Fehlern bei der Token-Erneuerung und doppelte UniFi-Access-Ereignisse. Vollständige Versionshinweise: https://github.com/home-assistant/core/releases/tag/2026.10.3',
+      'Aktualisiert Home Assistant auf 2026.10.4. Erhöht die Header-Grenzen des HTTP-Clients auf 64 KiB und aktualisiert die Lutron-Caséta-Bibliothek. Vollständige Versionshinweise: https://github.com/home-assistant/core/releases/tag/2026.10.4',
     pl_PL:
-      'Aktualizuje Home Assistant do 2026.10.3. Naprawia przekroczenia czasu uruchamiania KNX, obsługę zdarzeń Home Connect po błędach odświeżania tokenów i zduplikowane zdarzenia UniFi Access. Pełne informacje: https://github.com/home-assistant/core/releases/tag/2026.10.3',
+      'Aktualizuje Home Assistant do 2026.10.4. Zwiększa limity nagłówków klienta HTTP do 64 KiB i aktualizuje bibliotekę Lutron Caséta. Pełne informacje: https://github.com/home-assistant/core/releases/tag/2026.10.4',
     fr_FR:
-      'Met à jour Home Assistant vers 2026.10.3. Corrige les délais de démarrage KNX, la gestion des événements Home Connect après des erreurs de renouvellement de jetons et les événements UniFi Access en double. Notes complètes : https://github.com/home-assistant/core/releases/tag/2026.10.3',
+      'Met à jour Home Assistant vers 2026.10.4. Augmente les limites des en-têtes du client HTTP à 64 KiB et met à jour la bibliothèque Lutron Caséta. Notes complètes : https://github.com/home-assistant/core/releases/tag/2026.10.4',
   },
   migrations: {},
 })
