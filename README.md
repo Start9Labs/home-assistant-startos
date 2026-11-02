@@ -37,11 +37,11 @@
 
 The upstream Apache-2.0-licensed image is used with its own entrypoint, run as the container's init process.
 
-| Property      | Value                                                                |
-| ------------- | -------------------------------------------------------------------- |
-| Image         | `ghcr.io/home-assistant/home-assistant`                                |
-| Architectures | x86_64, aarch64                                                       |
-| Entrypoint    | Upstream default, run as init                                         |
+| Property      | Value                                                                   |
+| ------------- | ----------------------------------------------------------------------- |
+| Image         | `ghcr.io/home-assistant/home-assistant`                                 |
+| Architectures | x86_64, aarch64                                                         |
+| Entrypoint    | Upstream default, run as init                                           |
 | Subcontainer  | `home-assistant-sub` — the `primary` daemon, and the one to `attach` to |
 
 Three further subcontainers exist from the same image, each short-lived: `home-assistant-bootstrap` during install, and `reset-password` and `set-up-hacs` / `remove-hacs` for their respective actions.
