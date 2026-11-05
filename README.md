@@ -9,7 +9,7 @@
 > upstream documentation is accurate and fully applicable — see the
 > Documentation section of `instructions.md` for links.
 
-[Home Assistant](https://github.com/home-assistant/core) is a home-automation platform. This package runs Home Assistant Core unmodified, teaches it to trust the reverse proxy in front of it, and can install the community add-on store on request.
+[Home Assistant](https://github.com/home-assistant/core) is a home-automation platform. This package runs Home Assistant Core unmodified and teaches it to trust the reverse proxy in front of it.
 
 - **Upstream repo:** <https://github.com/home-assistant/core>
 - **Wrapper repo:** <https://github.com/Start9Labs/home-assistant-startos>
@@ -44,7 +44,7 @@ The upstream Apache-2.0-licensed image is used with its own entrypoint, run as t
 | Entrypoint    | Upstream default, run as init                                           |
 | Subcontainer  | `home-assistant-sub` — the `primary` daemon, and the one to `attach` to |
 
-Three further subcontainers exist from the same image, each short-lived: `home-assistant-bootstrap` during install, and `reset-password` and `set-up-hacs` / `remove-hacs` for their respective actions.
+Two further subcontainers exist from the same image, each short-lived: `home-assistant-bootstrap` during install and `reset-password` for the password-reset action.
 
 ## Volume and Data Layout
 
@@ -53,19 +53,18 @@ Two volumes.
 | Volume   | Mount Point | Purpose                                                                                                        |
 | -------- | ----------- | -------------------------------------------------------------------------------------------------------------- |
 | `config` | `/config`   | Home Assistant's entire configuration tree — `configuration.yaml`, `.storage/`, automations, custom components |
-| `main`   | `/data`     | `store.json`                                                                                                   |
+| `main`   | `/data`     | Retained legacy package state; unused by the running service                                                   |
 
-Everything Home Assistant persists is on `config`, including its user database and settings store; `main` carries only this package's own state.
+Everything Home Assistant persists is on `config`, including its user database and settings store. The package neither reads nor writes `main`; an existing `store.json` there is left untouched.
 
 ## File Models
 
-Three models, and the package writes remarkably little: Home Assistant owns its configuration, and this package's job is to make one setting correct.
+Two models, and the package writes remarkably little: Home Assistant owns its configuration, and this package's job is to make one setting correct.
 
 | File                         | Format | Modelled                | Written by                                    |
 | ---------------------------- | ------ | ----------------------- | --------------------------------------------- |
 | `/config/.storage/http`      | JSON   | Yes — `FileHelper.json` | Init, when the reverse-proxy trust is missing |
 | `/config/configuration.yaml` | YAML   | Yes — `FileHelper.yaml` | A version migration only                      |
-| `/data/store.json`           | JSON   | Yes — `FileHelper.json` | Every init, and the HACS actions              |
 
 ### .storage/http
 
@@ -80,10 +79,6 @@ There is one case where the package deliberately does nothing: a store Home Assi
 Modelled but not managed. The only write is a version migration removing the `http:` block earlier releases of this package wrote — Home Assistant now owns those settings in its own store and ignores the file's version.
 
 The model registers handlers for Home Assistant's custom YAML tags (`!include`, `!secret`, `!env_var`, and the `!include_dir_*` family). Without them a round-trip would silently drop any such directive, which is a thing users legitimately add over SSH.
-
-### store.json
-
-`hacsInstalled` alone: whether the community store's files are present. It is what makes the two HACS actions mutually exclusive in the interface.
 
 ## Dependencies
 
@@ -113,7 +108,7 @@ Account creation is Home Assistant's own: the first visit to the dashboard regis
 
 ## Actions
 
-Three actions. Two of them are a pair — only one is ever visible.
+The package provides password recovery for the built-in authentication provider.
 
 ### Reset Password
 
@@ -124,23 +119,6 @@ Generates a new password for a Home Assistant user, chosen from the accounts in 
 - **Repeat safety:** safe to re-run; each run generates a fresh password.
 - **Outputs:** the username and new password, the password masked and copyable.
 - **Scope:** the built-in username-and-password provider only. Accounts from other auth providers have no password to reset.
-
-### Set Up HACS
-
-Adds the community store's files to the configuration tree. Setup is finished inside Home Assistant afterwards.
-
-- **What it changes:** unpacks HACS into `/config/custom_components`. The archive is bundled in the package, so no network access is needed.
-- **Cost:** seconds, then a restart if the service is running; if it is stopped the files take effect at the next start.
-- **Repeat safety:** the action hides itself once HACS is installed, which also prevents a re-run from overwriting — and so downgrading — a HACS that has since updated itself.
-- **Worth knowing:** HACS installs community code that Start9 does not review and that runs with full access inside Home Assistant, and it requires a GitHub account.
-
-### Remove HACS
-
-The mirror of the above, visible only while HACS is installed.
-
-- **What it changes:** deletes HACS's own files, its `.storage/hacs.*` stores, and the legacy `.storage/hacs` directory. **Anything installed _through_ HACS is left in place** — integrations, cards, and themes are yours — and your GitHub authorization is not revoked.
-- **Order matters:** remove the HACS integration inside Home Assistant first, then run this.
-- **Cost:** seconds, then a restart if running.
 
 ## Tasks
 
@@ -160,20 +138,18 @@ The grace period covers Home Assistant's startup, which loads every configured i
 
 Both volumes are copied wholesale — `sdk.Backups.ofVolumes('main', 'config')`. No dump step and nothing excluded.
 
-- **Included:** the whole configuration tree — automations, dashboards, the user database, integration credentials, the recorder database, and anything HACS installed.
+- **Included:** the whole configuration tree — automations, dashboards, the user database, integration credentials, the recorder database, and community projects.
 - **Restore:** complete, and no reconfiguration is needed. The trusted-proxy setting comes back with the store, and init leaves it alone since it is already present.
 
 The recorder database grows with history, so the backup grows with it. Home Assistant's native Backup UI is also available in Container installs, but it does not capture this package's `main` volume; StartOS backups include both volumes.
 
 ## Limitations and Differences
 
-1. **Home Assistant Core, not Home Assistant OS.** The supervisor and its add-on store are not part of this package; optional HACS provides community integrations, cards, and themes, not supervisor add-ons.
+1. **Home Assistant Core, not Home Assistant OS.** The supervisor and its add-on store are not part of this package; the built-in Home Assistant Marketplace provides community integrations, cards, and themes, not supervisor add-ons.
 2. **Leave the web-server port at 8123.** It is changeable inside Home Assistant and doing so makes the dashboard unreachable.
 3. **The StartOS bridge is added to the trusted-proxy list** so the reverse proxy in front of Home Assistant works. Existing entries are preserved.
 4. **Resetting a password requires stopping the service**, because Home Assistant would otherwise overwrite the change on shutdown.
-5. **HACS installs unreviewed community code** that runs with full access, and needs a GitHub account.
-6. **Removing HACS leaves what it installed.** Those files are yours to remove.
-7. **No riscv64 build.** x86_64 and aarch64 only.
+5. **No riscv64 build.** x86_64 and aarch64 only.
 
 ---
 
@@ -189,22 +165,18 @@ subcontainers:
   - home-assistant-sub # the running daemon
   - home-assistant-bootstrap # install only
   - reset-password # temporary; the Reset Password action
-  - set-up-hacs # temporary; the HACS actions
 volumes:
   config: /config
   main: /data
 file_models:
   - /config/.storage/http # only trusted_proxies and use_x_forwarded_for are modelled
   - /config/configuration.yaml # migration only
-  - /data/store.json
 startos_managed_env_vars: []
 dependencies: []
 interfaces:
   ui: { type: ui, port: 8123 }
 actions:
   - reset-password # only-stopped
-  - set-up-hacs # hidden once HACS is installed
-  - remove-hacs # hidden unless HACS is installed
 tasks: []
 health_checks:
   - primary # the daemon's ready check, displayed "Web Interface"

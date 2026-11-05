@@ -18,14 +18,3 @@
 
 - Set the image pin above to `ghcr.io/home-assistant/home-assistant:<new version>`.
 - Verify the upstream image's system store (`/etc/ssl/certs/ca-certificates.crt`) and active certifi bundle (`python3 -m certifi`) still exclude emSign ECC Root CA - G3 on both architectures. Neither bundle may contain `MIICTjCCAdOgAwIBAgIKPPYHqWhwDtqLhDAKBggqhkjOPQQDAzBr`.
-
-### Bundled HACS archive
-
-`assets/hacs.zip` is an ancillary integration, not the wrapped application or a version-bump trigger. It is bundled rather than fetched so the Set Up HACS
-action needs no network access. Bump it by replacing the archive with a newer release
-of [hacs/integration](https://github.com/hacs/integration) — never by having the action
-download at runtime:
-
-```sh
-gh release view -R hacs/integration --json tagName -q .tagName
-```
