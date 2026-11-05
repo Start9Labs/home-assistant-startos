@@ -28,18 +28,21 @@ export const bootstrapHa = sdk.setupOnInit(async (effects, _kind, progress) => {
         exec: { command: sdk.useEntrypoint(), runAsInit: true },
         ready: {
           display: null,
-          fn: async () => ({
+          fn: async () => {
             // scenes.yaml is the last file HA's _write_default_config writes,
             // and .storage/http is only written once the web server has come
             // up — together they mean the config tree and the settings store
             // HA seeds it with are both on disk.
-            result:
+            const ready =
               (await exists(sdk.volumes.config.subpath('scenes.yaml'))) &&
               (await exists(sdk.volumes.config.subpath('.storage/http')))
-                ? 'success'
-                : 'failure',
-            message: null,
-          }),
+            return ready
+              ? { result: 'success', message: null }
+              : {
+                  result: 'failure',
+                  message: i18n('Generating Home Assistant configuration'),
+                }
+          },
         },
         requires: [],
       })
