@@ -1,18 +1,18 @@
 import { VersionInfo } from '@start9labs/start-sdk'
 
 export const current = VersionInfo.of({
-  version: '2026.11.1:0',
+  version: '2026.11.2:0',
   releaseNotes: {
     en_US:
-      'Updated Home Assistant to 2026.11.1. Requires StartOS 0.4.2 or later. Fixes HomeKit camera motion events not arriving, Shelly covers not reporting closed at position 0, and MQTT handling of unknown payload encodings. Full release notes: https://github.com/home-assistant/core/releases/tag/2026.11.1',
+      'Updated Home Assistant to 2026.11.2. Requires StartOS 0.4.2 or later. Fixes LG webOS TVs going unavailable, Reolink playback for NVRs and Hubs, Axis camera basic authentication, and an MQTT reload loop; Solar-Log passwords and Alexa account identifiers are now redacted from diagnostics. Full release notes: https://github.com/home-assistant/core/releases/tag/2026.11.2',
     es_ES:
-      'Actualiza Home Assistant a 2026.11.1. Requiere StartOS 0.4.2 o posterior. Corrige los eventos de movimiento de cámaras HomeKit que no llegaban, las persianas Shelly que no indicaban estar cerradas en la posición 0 y la gestión de codificaciones desconocidas de mensajes MQTT. Notas completas: https://github.com/home-assistant/core/releases/tag/2026.11.1',
+      'Actualiza Home Assistant a 2026.11.2. Requiere StartOS 0.4.2 o posterior. Corrige los televisores LG webOS que quedaban no disponibles, la reproducción de Reolink en NVR y Hubs, la autenticación básica de las cámaras Axis y un bucle de recarga de MQTT; las contraseñas de Solar-Log y los identificadores de cuenta de Alexa ya se ocultan en los diagnósticos. Notas completas: https://github.com/home-assistant/core/releases/tag/2026.11.2',
     de_DE:
-      'Aktualisiert Home Assistant auf 2026.11.1. Erfordert StartOS 0.4.2 oder neuer. Behebt ausbleibende Bewegungsereignisse von HomeKit-Kameras, Shelly-Rollläden, die bei Position 0 nicht als geschlossen gemeldet werden, und die Verarbeitung unbekannter MQTT-Nutzdatenkodierungen. Vollständige Versionshinweise: https://github.com/home-assistant/core/releases/tag/2026.11.1',
+      'Aktualisiert Home Assistant auf 2026.11.2. Erfordert StartOS 0.4.2 oder neuer. Behebt nicht verfügbare LG-webOS-Fernseher, die Reolink-Wiedergabe für NVRs und Hubs, die Basic-Authentifizierung von Axis-Kameras und eine MQTT-Neuladeschleife; Solar-Log-Passwörter und Alexa-Kontokennungen werden in Diagnosedaten nun geschwärzt. Vollständige Versionshinweise: https://github.com/home-assistant/core/releases/tag/2026.11.2',
     pl_PL:
-      'Aktualizuje Home Assistant do 2026.11.1. Wymaga StartOS 0.4.2 lub nowszego. Naprawia niedostarczane zdarzenia ruchu kamer HomeKit, rolety Shelly niezgłaszające zamknięcia w pozycji 0 oraz obsługę nieznanych kodowań wiadomości MQTT. Pełne informacje o wydaniu: https://github.com/home-assistant/core/releases/tag/2026.11.1',
+      'Aktualizuje Home Assistant do 2026.11.2. Wymaga StartOS 0.4.2 lub nowszego. Naprawia niedostępność telewizorów LG webOS, odtwarzanie Reolink dla rejestratorów NVR i Hubów, uwierzytelnianie podstawowe kamer Axis oraz pętlę przeładowywania MQTT; hasła Solar-Log i identyfikatory kont Alexa są teraz ukrywane w diagnostyce. Pełne informacje o wydaniu: https://github.com/home-assistant/core/releases/tag/2026.11.2',
     fr_FR:
-      'Met à jour Home Assistant vers 2026.11.1. Nécessite StartOS 0.4.2 ou ultérieur. Corrige les événements de mouvement des caméras HomeKit non reçus, les volets Shelly non signalés comme fermés en position 0 et la gestion des encodages inconnus des messages MQTT. Notes complètes : https://github.com/home-assistant/core/releases/tag/2026.11.1',
+      'Met à jour Home Assistant vers 2026.11.2. Nécessite StartOS 0.4.2 ou ultérieur. Corrige les téléviseurs LG webOS devenant indisponibles, la lecture Reolink pour les NVR et Hubs, l’authentification basique des caméras Axis et une boucle de rechargement MQTT ; les mots de passe Solar-Log et les identifiants de compte Alexa sont désormais masqués dans les diagnostics. Notes complètes : https://github.com/home-assistant/core/releases/tag/2026.11.2',
   },
   migrations: {},
 })
